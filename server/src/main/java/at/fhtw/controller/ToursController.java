@@ -1,54 +1,32 @@
 package at.fhtw.controller;
 
 import at.fhtw.service.TourService;
-import at.fhtw.service.model.Tour;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpServer;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.OutputStream;
-import java.net.URI;
-import java.util.List;
+import java.io.IOException;
 
 
 @Slf4j
 public class ToursController {
 
-    private final HttpServer httpServer;
     private final TourService tourService;
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public ToursController(HttpServer httpServer, TourService tourService) {
-        this.httpServer = httpServer;
+    public ToursController(TourService tourService) {
         this.tourService = tourService;
-
-        httpServer.createContext("/tours", this::handleToursRequest);
     }
 
-    @SneakyThrows
-    private void handleToursRequest(HttpExchange exchange) {
-        URI requestURI = exchange.getRequestURI();
+    public String getTours() throws JsonProcessingException {
+        return objectMapper.writeValueAsString(tourService.getAllTours());
+    }
 
-        if (exchange.getRequestMethod().equals("GET")) {
-            var tours = getTours();
-
-            try {
-                objectMapper.writeValueAsString(tours);
-            } catch (Exception e) {
-                log.error("asd", e);
-            }
-            String response = objectMapper.writeValueAsString(tours);
-            exchange.sendResponseHeaders(200, response.getBytes().length);
-
-            OutputStream os = exchange.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
+    public String getTour(int tour) throws IOException {
+        var optinalTour = tourService.getTour(tour);
+        if (optinalTour.isPresent()) {
+            return objectMapper.writeValueAsString(optinalTour.get());
         }
-    }
-
-    private List<Tour> getTours() {
-        return tourService.getAllTours();
+        return "{}";
     }
 }

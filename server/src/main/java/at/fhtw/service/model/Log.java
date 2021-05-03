@@ -1,16 +1,15 @@
-package at.fhtw.repository.model;
+package at.fhtw.service.model;
 
 import lombok.*;
 
 import java.sql.Timestamp;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
-public class LogEntity {
+public class Log {
 
     private int id;
     private int tourId;

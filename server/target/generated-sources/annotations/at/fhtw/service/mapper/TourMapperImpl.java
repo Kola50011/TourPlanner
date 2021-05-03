@@ -1,12 +1,13 @@
 package at.fhtw.service.mapper;
 
 import at.fhtw.repository.model.TourEntity;
+import at.fhtw.service.model.DetailedTour;
 import at.fhtw.service.model.Tour;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-29T20:50:20+0200",
+    date = "2021-05-03T18:22:26+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
 public class TourMapperImpl implements TourMapper {
@@ -37,5 +38,19 @@ public class TourMapperImpl implements TourMapper {
         tour.setName( tourEntity.getName() );
 
         return tour;
+    }
+
+    @Override
+    public DetailedTour tourEntityToDetailedTour(TourEntity tourEntity) {
+        if ( tourEntity == null ) {
+            return null;
+        }
+
+        DetailedTour detailedTour = new DetailedTour();
+
+        detailedTour.setId( tourEntity.getId() );
+        detailedTour.setName( tourEntity.getName() );
+
+        return detailedTour;
     }
 }

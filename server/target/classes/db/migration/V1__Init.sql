@@ -28,6 +28,6 @@ values (DEFAULT, 'Walking');
 insert into Log (tourId, startTime, endTime, startLocation, endLocation, rating, meansOfTransport)
 values (1, '2021-01-01 12:0:00-0', '2021-01-02 12:0:00-0', 'Wien', 'Wiener Neustadt', 5, 'Car');
 insert into Log (tourId, startTime, endTime, startLocation, endLocation, rating, meansOfTransport)
-values (1, '2021-01-02 12:0:00-0', '2021-01-02 15:0:00-0', 'Wien', 'Wiener Neustadt', 5, 'Car');
+values (1, '2021-01-02 12:0:00-0', '2021-01-02 15:0:00-0', 'Wiener Neustadt', 'Graz', 5, 'Car');
 insert into Log (tourId, startTime, endTime, startLocation, endLocation, rating, meansOfTransport)
-values (1, '2021-01-01 16:0:00-0', '2021-01-02 17:0:00-0', 'Wien', 'Wiener Neustadt', 5, 'Car');
+values (1, '2021-01-01 16:0:00-0', '2021-01-02 17:0:00-0', 'Graz', 'Wien', 5, 'Car');

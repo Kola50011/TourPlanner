@@ -1,6 +1,7 @@
 package at.fhtw.service.mapper;
 
 import at.fhtw.repository.model.TourEntity;
+import at.fhtw.service.model.DetailedTour;
 import at.fhtw.service.model.Tour;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,4 +18,8 @@ public interface TourMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     Tour tourEntityToTour(TourEntity tourEntity);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    DetailedTour tourEntityToDetailedTour(TourEntity tourEntity);
 }

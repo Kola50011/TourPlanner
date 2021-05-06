@@ -3,16 +3,19 @@ package at.fhtw.view;
 import at.fhtw.viewModel.IndexViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import javafx.scene.control.ListView;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class IndexView {
+public class IndexController {
+//    @FXML
+//    public Text topText;
+//
+//    @FXML
+//    public Button changeTextButton;
+
     @FXML
-    public Text topText;
-    @FXML
-    public Button changeTextButton;
+    public ListView tourList;
 
     IndexViewModel indexViewModel;
 
@@ -20,7 +23,8 @@ public class IndexView {
     public void initialize() {
         indexViewModel = new IndexViewModel();
 
-        topText.textProperty().bindBidirectional(indexViewModel.getTopTextProperty());
+//        topText.textProperty().bindBidirectional(indexViewModel.getTopTextProperty());
+        tourList.setItems(indexViewModel.getTourList());
     }
 
     @FXML

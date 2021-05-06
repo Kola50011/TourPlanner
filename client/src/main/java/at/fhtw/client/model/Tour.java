@@ -1,4 +1,4 @@
-package at.fhtw.service.model;
+package at.fhtw.client.model;
 
 import lombok.*;
 
@@ -7,10 +7,8 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class DetailedTour {
-    private int id;
+public class Tour {
     private String name;
     private String description;
-    private float distance;
-    private String image;
+    private int id;
 }

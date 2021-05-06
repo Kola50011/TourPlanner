@@ -1,7 +1,8 @@
 create table Tour
 (
-    id   serial primary key  not null,
-    name varchar(128) unique not null
+    id          serial primary key         not null,
+    name        varchar(128) unique        not null,
+    description varchar(1024) default ('') not null
 );
 
 create table Log

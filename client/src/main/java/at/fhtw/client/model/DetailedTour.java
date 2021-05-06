@@ -1,4 +1,4 @@
-package at.fhtw.service.model;
+package at.fhtw.client.model;
 
 import lombok.*;
 

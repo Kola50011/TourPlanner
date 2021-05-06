@@ -21,8 +21,8 @@ public class App {
         LogRepository logRepository = new LogRepository(connectionFactory);
         TourRepository tourRepository = new TourRepository(connectionFactory);
 
-        LogService logService = new LogService(logRepository);
+        LogService logService = new LogService(logRepository, mapQuestClient);
         TourService tourService = new TourService(tourRepository, logService, mapQuestClient);
-        Api api = new Api(tourService);
+        Api api = new Api(logService, tourService);
     }
 }

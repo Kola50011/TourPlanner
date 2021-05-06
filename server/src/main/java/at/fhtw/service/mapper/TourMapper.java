@@ -21,5 +21,6 @@ public interface TourMapper {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
+    @Mapping(source = "description", target = "description")
     DetailedTour tourEntityToDetailedTour(TourEntity tourEntity);
 }

@@ -11,5 +11,6 @@ import lombok.*;
 public class TourEntity {
 
     private String name;
+    private String description;
     private int id;
 }

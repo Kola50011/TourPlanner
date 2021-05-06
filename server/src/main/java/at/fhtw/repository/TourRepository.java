@@ -26,6 +26,7 @@ public class TourRepository {
                     res.add(TourEntity.builder()
                             .id(resultSet.getInt("id"))
                             .name(resultSet.getString("name"))
+                            .description(resultSet.getString("description"))
                             .build());
                 }
             }
@@ -43,6 +44,7 @@ public class TourRepository {
                     return Optional.of(TourEntity.builder()
                             .id(resultSet.getInt("id"))
                             .name(resultSet.getString("name"))
+                            .description(resultSet.getString("description"))
                             .build());
                 }
             }

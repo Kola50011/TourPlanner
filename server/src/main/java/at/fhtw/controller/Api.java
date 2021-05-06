@@ -1,6 +1,7 @@
 package at.fhtw.controller;
 
 
+import at.fhtw.service.LogService;
 import at.fhtw.service.TourService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
@@ -15,9 +16,11 @@ import java.util.List;
 public class Api {
 
     private ToursController toursController;
+    private LogsController logsController;
 
-    public Api(TourService tourService) throws IOException {
+    public Api(LogService logService, TourService tourService) throws IOException {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8080), 0);
+        logsController = new LogsController(logService);
         toursController = new ToursController(tourService);
         httpServer.createContext("/", this::handleToursRequest);
         httpServer.start();
@@ -46,10 +49,16 @@ public class Api {
             }
         } else if (subPaths.size() == 2) {
             String firstSubPath = subPaths.get(0);
-            if (firstSubPath.equals("tours")) {
-                var tour = toursController.getTour(Integer.parseInt(subPaths.get(1)));
-                sendResponse(exchange, tour);
-                return;
+            var id = Integer.parseInt(subPaths.get(1));
+            switch (firstSubPath) {
+                case "tours":
+                    var tour = toursController.getTour(id);
+                    sendResponse(exchange, tour);
+                    return;
+                case "logs":
+                    var logs = logsController.getLogs(id);
+                    sendResponse(exchange, logs);
+                    return;
             }
         }
         exchange.sendResponseHeaders(404, 0);

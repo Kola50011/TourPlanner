@@ -3,6 +3,7 @@ package at.fhtw;
 import at.fhtw.client.MapQuestClient;
 import at.fhtw.controller.Api;
 import at.fhtw.repository.ConnectionFactory;
+import at.fhtw.repository.ImageRepository;
 import at.fhtw.repository.LogRepository;
 import at.fhtw.repository.TourRepository;
 import at.fhtw.service.LogService;
@@ -20,9 +21,10 @@ public class App {
 
         LogRepository logRepository = new LogRepository(connectionFactory);
         TourRepository tourRepository = new TourRepository(connectionFactory);
+        ImageRepository imageRepository = ImageRepository.getInstance();
 
         LogService logService = new LogService(logRepository, mapQuestClient);
-        TourService tourService = new TourService(tourRepository, logService, mapQuestClient);
+        TourService tourService = new TourService(tourRepository, logService, mapQuestClient, imageRepository);
         Api api = new Api(logService, tourService);
     }
 }

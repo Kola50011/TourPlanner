@@ -12,4 +12,5 @@ import lombok.ToString;
 public class Route {
     private float distance;
     private String sessionId;
+    private BoundingBox boundingBox;
 }

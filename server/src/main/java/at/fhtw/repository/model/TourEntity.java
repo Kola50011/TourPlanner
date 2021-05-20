@@ -10,7 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 public class TourEntity {
 
+    private int id;
     private String name;
     private String description;
-    private int id;
+    private float distance;
 }

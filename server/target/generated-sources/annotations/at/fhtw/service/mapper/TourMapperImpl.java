@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-05-06T18:47:15+0200",
+    date = "2021-05-17T18:15:13+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
 public class TourMapperImpl implements TourMapper {
@@ -22,6 +22,50 @@ public class TourMapperImpl implements TourMapper {
 
         tourEntity.setId( tour.getId() );
         tourEntity.setName( tour.getName() );
+
+        return tourEntity;
+    }
+
+    @Override
+    public TourEntity detailedTourToTourEntity(DetailedTour tour) {
+        if ( tour == null ) {
+            return null;
+        }
+
+        TourEntity tourEntity = new TourEntity();
+
+        if ( tour.getName() != null ) {
+            tourEntity.setName( tour.getName() );
+        }
+        else {
+            tourEntity.setName( "" );
+        }
+        if ( tour.getDescription() != null ) {
+            tourEntity.setDescription( tour.getDescription() );
+        }
+        else {
+            tourEntity.setDescription( "" );
+        }
+        tourEntity.setDistance( tour.getDistance() );
+        tourEntity.setId( tour.getId() );
+
+        return tourEntity;
+    }
+
+    @Override
+    public TourEntity combineDetailedTourWithTourEntity(TourEntity tourEntity, DetailedTour detailedTour) {
+        if ( detailedTour == null ) {
+            return null;
+        }
+
+        tourEntity.setId( detailedTour.getId() );
+        if ( detailedTour.getName() != null ) {
+            tourEntity.setName( detailedTour.getName() );
+        }
+        if ( detailedTour.getDescription() != null ) {
+            tourEntity.setDescription( detailedTour.getDescription() );
+        }
+        tourEntity.setDistance( detailedTour.getDistance() );
 
         return tourEntity;
     }
@@ -51,6 +95,7 @@ public class TourMapperImpl implements TourMapper {
         detailedTour.setId( tourEntity.getId() );
         detailedTour.setName( tourEntity.getName() );
         detailedTour.setDescription( tourEntity.getDescription() );
+        detailedTour.setDistance( tourEntity.getDistance() );
 
         return detailedTour;
     }

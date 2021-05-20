@@ -1,5 +1,6 @@
 package at.fhtw.client;
 
+import at.fhtw.client.model.BoundingBox;
 import at.fhtw.client.model.RouteRequest;
 import at.fhtw.client.model.RouteResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 @Slf4j
@@ -52,10 +52,18 @@ public class MapQuestClient {
         }
     }
 
-    public String getMap(String session) throws IOException {
+    public byte[] getMap(String session, BoundingBox boundingBox, String locations) throws IOException {
         var url = baseUrl.newBuilder()
                 .addPathSegments("staticmap/v5/map")
                 .addQueryParameter("session", session)
+                .addQueryParameter("zoom", "10")
+                .addQueryParameter("size", "600,400")
+                .addQueryParameter("boundingBox",
+                        boundingBox.getUl().getLat() + "," +
+                                boundingBox.getUl().getLng() + "," +
+                                boundingBox.getLr().getLat() + "," +
+                                boundingBox.getLr().getLng())
+                .addQueryParameter("locations", locations)
                 .build();
         var request = new Request.Builder()
                 .url(url)
@@ -66,7 +74,7 @@ public class MapQuestClient {
             if (!response.isSuccessful()) {
                 log.error("Could not make map request with url {}!", url);
             }
-            return Base64.getEncoder().encodeToString(response.body().bytes());
+            return response.body().bytes();
         }
     }
 }

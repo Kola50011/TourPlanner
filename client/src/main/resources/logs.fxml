@@ -1,0 +1,18 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="at.fhtw.view.LogsController">
+    <center>
+        <TableView fx:id="tourTableView">
+            <columns>
+                <TableColumn fx:id="startTimeColumn" text="Start-time"/>
+                <TableColumn fx:id="endTimeColumn" text="End-time"/>
+                <TableColumn fx:id="startLocationColumn" text="Start-location"/>
+                <TableColumn fx:id="endLocationColumn" text="End-location"/>
+                <TableColumn fx:id="ratingColumn" text="Rating"/>
+                <TableColumn fx:id="meansOfTransportColumn" text="Means of transportation"/>
+                <TableColumn fx:id="distanceColumn" text="Distance"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

@@ -20,4 +20,5 @@ public class LogEntity {
     private String endLocation;
     private int rating;
     private String meansOfTransport;
+    private float distance;
 }

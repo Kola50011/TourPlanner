@@ -32,6 +32,7 @@ public class LogRepository {
                             .endTime(resultSet.getTimestamp("endTime"))
                             .rating(resultSet.getInt("rating"))
                             .meansOfTransport(resultSet.getString("meansOfTransport"))
+                            .distance(resultSet.getFloat("distance"))
                             .build());
                 }
             }
@@ -56,6 +57,7 @@ public class LogRepository {
                             .endLocation(resultSet.getString("endLocation"))
                             .rating(resultSet.getInt("rating"))
                             .meansOfTransport(resultSet.getString("meansOfTransport"))
+                            .distance(resultSet.getFloat("distance"))
                             .build());
                 }
             }

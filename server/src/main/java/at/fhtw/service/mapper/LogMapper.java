@@ -18,6 +18,7 @@ public interface LogMapper {
     @Mapping(source = "endLocation", target = "endLocation")
     @Mapping(source = "rating", target = "rating")
     @Mapping(source = "meansOfTransport", target = "meansOfTransport")
+    @Mapping(source = "distance", target = "distance")
     LogEntity logToLogEntity(Log log);
 
     @Mapping(source = "id", target = "id")
@@ -28,6 +29,7 @@ public interface LogMapper {
     @Mapping(source = "endLocation", target = "endLocation")
     @Mapping(source = "rating", target = "rating")
     @Mapping(source = "meansOfTransport", target = "meansOfTransport")
+    @Mapping(source = "distance", target = "distance")
     Log logEntityToLog(LogEntity logEntity);
 
 }

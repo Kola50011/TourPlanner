@@ -6,3 +6,25 @@ services:
       - database.env
     ports:
       - "5432:5432"
+
+  minio:
+    image: minio/minio:RELEASE.2019-04-23T23-50-36Z
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minioKey123
+    command: server /data
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add myminio http://minio:9000 minio minioKey123;
+      /usr/bin/mc rm -r --force myminio/tourplanner;
+      /usr/bin/mc mb myminio/tourplanner;
+      /usr/bin/mc policy download myminio/tourplanner;
+      exit 0;
+      "

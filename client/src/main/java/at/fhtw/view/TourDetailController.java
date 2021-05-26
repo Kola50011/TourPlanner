@@ -1,11 +1,13 @@
 package at.fhtw.view;
 
-import at.fhtw.client.TourPlannerClient;
+import at.fhtw.client.TourPlannerClientFactory;
 import at.fhtw.events.TourChangeEvent;
 import at.fhtw.viewModel.TourDetailViewModel;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -27,6 +29,8 @@ public class TourDetailController {
     private Label totalDistanceLabel;
     @FXML
     private TextArea descriptionField;
+    @FXML
+    private Tab logsTab;
 
     @FXML
     private ImageView routeImageView;
@@ -44,7 +48,7 @@ public class TourDetailController {
 
     @FXML
     private void initialize() {
-        tourDetailViewModel = new TourDetailViewModel(new TourPlannerClient());
+        tourDetailViewModel = new TourDetailViewModel(TourPlannerClientFactory.getClient());
 
         nameField.textProperty().bindBidirectional(tourDetailViewModel.getNameField());
         totalDistanceLabel.textProperty().bindBidirectional(tourDetailViewModel.getTotalDistanceLabel());
@@ -54,6 +58,7 @@ public class TourDetailController {
 
         setupNameChangeListener();
         setupDescriptionChangeListener();
+        setupLogTabsChangeListener();
     }
 
     private void setupNameChangeListener() {
@@ -69,6 +74,14 @@ public class TourDetailController {
         descriptionField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
             if (!newPropertyValue) {
                 tourDetailViewModel.updateTourDescription();
+            }
+        });
+    }
+
+    private void setupLogTabsChangeListener() {
+        logsTab.selectedProperty().addListener(selected -> {
+            if (!((ReadOnlyBooleanProperty) selected).getValue()) {
+                tourDetailViewModel.updateCurrentTour();
             }
         });
     }

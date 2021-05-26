@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-05-17T18:15:13+0200",
+    date = "2021-05-26T15:53:34+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
 public class TourMapperImpl implements TourMapper {

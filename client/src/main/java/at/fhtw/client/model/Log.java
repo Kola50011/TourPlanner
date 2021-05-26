@@ -1,8 +1,13 @@
 package at.fhtw.client.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +25,15 @@ public class Log {
     private int rating;
     private String meansOfTransport;
     private float distance;
+
+    public static Log defaultLog() {
+        return Log.builder()
+                .startTime(Timestamp.from(Instant.now()))
+                .endTime(Timestamp.from(Instant.now()))
+                .startLocation("")
+                .endLocation("")
+                .rating(0)
+                .meansOfTransport("")
+                .build();
+    }
 }

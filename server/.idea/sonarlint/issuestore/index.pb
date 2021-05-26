@@ -5,8 +5,6 @@ g
 tourplanner.iml,0/b/0ba80837f768669bdae14ea9746170c8b2f39aca
 d
 4src/main/java/at/fhtw/client/model/RouteRequest.java,8/5/8502e7e5ac114ae4403863691aaec478c40b5025
-c
-3src/main/java/at/fhtw/service/mapper/LogMapper.java,3/d/3d80ab392c92474caac872f9f8def69742d05614
 e
 5src/main/java/at/fhtw/repository/model/LogEntity.java,a/7/a73d5ee1f1a30ec489106a38bc7e758c70b5ee0f
 ]
@@ -15,12 +13,6 @@ e
 5src/main/java/at/fhtw/service/model/DetailedTour.java,a/4/a4779c552dd47d4d8a976a5e46ca794f5e2d27f1
 f
 6src/main/java/at/fhtw/repository/model/TourEntity.java,f/0/f04a38b490e47af0c16104e7a9ff85223f17b26e
-]
--src/main/java/at/fhtw/service/LogService.java,d/2/d26dfe3e270ede8bc0049789e83a820a3e2a3e3d
-d
-4src/main/java/at/fhtw/service/mapper/TourMapper.java,0/7/07c543cef0eb5d330981b3acbe463a9e80f00546
-e
-5src/main/java/at/fhtw/controller/ToursController.java,b/f/bfa3536a94e0cb75bf7b3b92d1fb89e56883c713
 H
 dockerlocal/database.env,0/d/0d06eebf1e1f1093c3c6a25c19e480549f99edec
 7
@@ -29,8 +21,6 @@ O
 dockerlocal/docker-compose.yaml,8/a/8aa3092835e5c88bfa9e62e999d7c75a1e8b2bfd
 e
 5src/main/java/at/fhtw/client/model/RouteResponse.java,c/e/ceda1b84e4a0c57d3d5a533e30448fb846fbab42
-N
-src/main/java/at/fhtw/App.java,f/4/f4a74842c701f564686b046959b1891298cd78d5
 c
 3src/main/java/at/fhtw/client/model/BoundingBox.java,7/b/7ba394ee17cb7560e0b29fd84fcea330239cf24a
 b
@@ -43,9 +33,3 @@ b
 ,src/main/java/at/fhtw/service/model/Log.java,8/8/886458c08c750aaedf0d45fb7b702da9d75309c3
 e
 5src/main/java/at/fhtw/repository/ImageRepository.java,3/2/320963d470c96003e4e2cf10600673637daea934
-d
-4src/main/java/at/fhtw/repository/TourRepository.java,7/f/7f43f7764d40921b9e3b11004da48c2260f6a540
-c
-3src/main/java/at/fhtw/repository/LogRepository.java,c/2/c22c34c5e84aba58d38e5e38e020faec83af3d8d
-^
-.src/main/java/at/fhtw/service/TourService.java,a/a/aa3581e9b5b17e79fc1fbfda4157581d966b3db1

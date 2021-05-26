@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <TabPane xmlns:fx="http://javafx.com/fxml"
@@ -35,7 +39,7 @@
         <ImageView fx:id="routeImageView"/>
     </Tab>
 
-    <Tab text="Logs" closable="false">
+    <Tab text="Logs" closable="false" fx:id="logsTab">
         <fx:include source="logs.fxml" fx:id="logs"/>
     </Tab>
 </TabPane>

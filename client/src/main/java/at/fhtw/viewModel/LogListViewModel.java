@@ -23,12 +23,16 @@ public class LogListViewModel {
         this.tourPlannerClient = tourPlannerClient;
     }
 
+    public int logIndexToId(int idx) {
+        return logList.get(idx).getId();
+    }
+
     @SneakyThrows
     public void updateLogs() {
         logList = new ArrayList<>();
         var listKeys = new ArrayList<String>();
 
-        var tours = tourPlannerClient.getLogs(tourId);
+        var tours = tourPlannerClient.getLogsOfTour(tourId);
         for (var tour : tours) {
             listKeys.add(tour.getStartLocation() + " - " + tour.getEndLocation());
             logList.add(tour);
@@ -39,6 +43,18 @@ public class LogListViewModel {
 
     public void setTour(int tourId) {
         this.tourId = tourId;
+        updateLogs();
+    }
+
+    public void addNewLog() {
+        var log = Log.defaultLog();
+        log.setTourId(tourId);
+        tourPlannerClient.putLog(log);
+        updateLogs();
+    }
+
+    public void deleteLog(int logId) {
+        tourPlannerClient.deleteLog(logId);
         updateLogs();
     }
 }

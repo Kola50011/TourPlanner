@@ -2,8 +2,7 @@ package at.fhtw.service.mapper;
 
 import at.fhtw.repository.model.LogEntity;
 import at.fhtw.service.model.Log;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -32,4 +31,16 @@ public interface LogMapper {
     @Mapping(source = "distance", target = "distance")
     Log logEntityToLog(LogEntity logEntity);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+    @Mapping(source = "newLog.id", target = "id")
+    @Mapping(source = "newLog.tourId", target = "tourId")
+    @Mapping(source = "newLog.startTime", target = "startTime")
+    @Mapping(source = "newLog.endTime", target = "endTime")
+    @Mapping(source = "newLog.startLocation", target = "startLocation")
+    @Mapping(source = "newLog.endLocation", target = "endLocation")
+    @Mapping(source = "newLog.rating", target = "rating")
+    @Mapping(source = "newLog.meansOfTransport", target = "meansOfTransport")
+    @Mapping(source = "newLog.distance", target = "distance")
+    LogEntity combineLogEntityWithLogEntity(@MappingTarget LogEntity oldLog, Log newLog);
 }

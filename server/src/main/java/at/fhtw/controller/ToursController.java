@@ -25,9 +25,9 @@ public class ToursController {
     }
 
     public Optional<String> getTour(int tour) throws IOException {
-        var optinalTour = tourService.getTour(tour);
-        if (optinalTour.isPresent()) {
-            return Optional.of(objectMapper.writeValueAsString(optinalTour.get()));
+        var optionalTour = tourService.getTour(tour);
+        if (optionalTour.isPresent()) {
+            return Optional.of(objectMapper.writeValueAsString(optionalTour.get()));
         }
         return Optional.empty();
     }

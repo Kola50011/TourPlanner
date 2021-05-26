@@ -31,7 +31,7 @@ public class LogsViewModel {
     }
 
     private void updateItems() {
-        var logs = tourPlannerClient.getLogs(currentTour);
+        var logs = tourPlannerClient.getLogsOfTour(currentTour);
         items.setAll(logs);
     }
 }

@@ -24,7 +24,11 @@ public class App {
         ImageRepository imageRepository = ImageRepository.getInstance();
 
         LogService logService = new LogService(logRepository, mapQuestClient);
-        TourService tourService = new TourService(tourRepository, logService, mapQuestClient, imageRepository);
+        TourService tourService = new TourService(tourRepository, mapQuestClient, imageRepository);
+
+        tourService.setLogService(logService);
+        logService.setTourService(tourService);
+
         Api api = new Api(logService, tourService);
     }
 }

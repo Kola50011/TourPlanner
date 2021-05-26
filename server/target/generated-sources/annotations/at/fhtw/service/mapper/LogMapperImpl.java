@@ -6,7 +6,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-05-17T18:15:12+0200",
+    date = "2021-05-26T15:53:34+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
 public class LogMapperImpl implements LogMapper {
@@ -51,5 +51,34 @@ public class LogMapperImpl implements LogMapper {
         log.setDistance( logEntity.getDistance() );
 
         return log;
+    }
+
+    @Override
+    public LogEntity combineLogEntityWithLogEntity(LogEntity oldLog, Log newLog) {
+        if ( newLog == null ) {
+            return null;
+        }
+
+        oldLog.setId( newLog.getId() );
+        oldLog.setTourId( newLog.getTourId() );
+        if ( newLog.getStartTime() != null ) {
+            oldLog.setStartTime( newLog.getStartTime() );
+        }
+        if ( newLog.getEndTime() != null ) {
+            oldLog.setEndTime( newLog.getEndTime() );
+        }
+        if ( newLog.getStartLocation() != null ) {
+            oldLog.setStartLocation( newLog.getStartLocation() );
+        }
+        if ( newLog.getEndLocation() != null ) {
+            oldLog.setEndLocation( newLog.getEndLocation() );
+        }
+        oldLog.setRating( newLog.getRating() );
+        if ( newLog.getMeansOfTransport() != null ) {
+            oldLog.setMeansOfTransport( newLog.getMeansOfTransport() );
+        }
+        oldLog.setDistance( newLog.getDistance() );
+
+        return oldLog;
     }
 }

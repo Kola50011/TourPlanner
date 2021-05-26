@@ -33,6 +33,10 @@ public class TourDetailViewModel {
         this.tourPlannerClient = tourPlannerClient;
     }
 
+    public void updateCurrentTour() {
+        setTour(currentTour.getId());
+    }
+
     public void setTour(int id) {
         if (currentTour != null) {
             updateTourName();

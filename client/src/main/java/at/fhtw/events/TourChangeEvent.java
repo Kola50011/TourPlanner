@@ -8,7 +8,7 @@ public class TourChangeEvent extends Event {
     public static final EventType<Event> TOUR_CHANGE_EVENT = new EventType<>("TourChangeEvent");
 
     @Getter
-    private int tourId;
+    private final int tourId;
 
     public TourChangeEvent(int tourId) {
         super(TOUR_CHANGE_EVENT);

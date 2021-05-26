@@ -1,6 +1,6 @@
 package at.fhtw.view;
 
-import at.fhtw.client.TourPlannerClient;
+import at.fhtw.client.TourPlannerClientFactory;
 import at.fhtw.events.TourChangeEvent;
 import at.fhtw.viewModel.TourListViewModel;
 import javafx.event.EventHandler;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class TourListController {
     private final List<EventHandler<TourChangeEvent>> listChangedEventHandlers = new ArrayList<>();
-    private final TourListViewModel tourListViewModel = new TourListViewModel(new TourPlannerClient());
+    private final TourListViewModel tourListViewModel = new TourListViewModel(TourPlannerClientFactory.getClient());
 
     @FXML
     private ListView<String> tourListView;

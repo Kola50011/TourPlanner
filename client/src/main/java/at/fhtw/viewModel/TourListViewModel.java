@@ -14,11 +14,10 @@ import java.util.List;
 
 public class TourListViewModel {
     private final TourPlannerClient tourPlannerClient;
-    private List<Tour> toursList;
-    private List<String> tourNamesList;
-
     @Getter
-    private ListProperty<String> tourNamesProperty = new SimpleListProperty<>();
+    private final ListProperty<String> tourNamesProperty = new SimpleListProperty<>();
+
+    private List<Tour> toursList;
 
     public TourListViewModel(TourPlannerClient tourPlannerClient) {
         this.tourPlannerClient = tourPlannerClient;
@@ -46,7 +45,7 @@ public class TourListViewModel {
     @SneakyThrows
     public void updateTours() {
         toursList = new ArrayList<>();
-        tourNamesList = new ArrayList<>();
+        List<String> tourNamesList = new ArrayList<>();
 
         var tours = tourPlannerClient.getTours();
         for (var tour : tours) {

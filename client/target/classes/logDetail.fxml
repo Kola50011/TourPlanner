@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          xmlns="http://javafx.com/javafx"
+          fx:controller="at.fhtw.view.LogDetailController"
+          hgap="10" vgap="10">
+
+    <Label text="Start"
+           GridPane.columnIndex="0" GridPane.rowIndex="0"
+           GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+    <DatePicker fx:id="startDateField"
+                GridPane.columnIndex="1" GridPane.rowIndex="0"
+                GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+    <TextField fx:id="startLocationField"
+               GridPane.columnIndex="2" GridPane.rowIndex="0"
+               GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+
+</GridPane>

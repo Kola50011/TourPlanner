@@ -94,6 +94,29 @@ public class TourPlannerClient {
         }
     }
 
+    public Optional<DetailedTour> getLog(int id) {
+        var url = baseUrl.newBuilder()
+                .addPathSegments("tours")
+                .addPathSegments(Integer.toString(id))
+                .build();
+        var request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        try (var response = httpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                log.error("Could not make route request with url {}!", url);
+                return Optional.empty();
+            }
+            var responseString = response.body().string();
+            return Optional.of(objectMapper.readValue(responseString, DetailedTour.class));
+        } catch (IOException e) {
+            log.error("Exception when trying to get tour!", e);
+            return Optional.empty();
+        }
+    }
+
     public boolean putTour(DetailedTour tour) {
         var url = baseUrl.newBuilder()
                 .addPathSegments("tours")

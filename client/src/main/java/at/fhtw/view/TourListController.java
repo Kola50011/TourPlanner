@@ -59,12 +59,14 @@ public class TourListController {
         dialog.setContentText("Name:");
 
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name -> tourListViewModel.addTour(name));
+        result.ifPresent(name -> {
+            tourListViewModel.addTour(name);
 
-        var tourIdx = tourListView.getItems().size() - 1;
-        tourListView.getSelectionModel().select(tourIdx);
-        var tourId = tourListViewModel.tourIndexToId(tourIdx);
-        fireChangeEvent(tourId);
+            var tourIdx = tourListView.getItems().size() - 1;
+            tourListView.getSelectionModel().select(tourIdx);
+            var tourId = tourListViewModel.tourIndexToId(tourIdx);
+            fireChangeEvent(tourId);
+        });
     }
 
     @FXML

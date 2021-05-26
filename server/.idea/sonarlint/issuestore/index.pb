@@ -41,3 +41,11 @@ b
 0src/main/java/at/fhtw/client/MapQuestClient.java,a/b/ab2f2dd2515bcd4bf3fff090bd48b1ad68252805
 \
 ,src/main/java/at/fhtw/service/model/Log.java,8/8/886458c08c750aaedf0d45fb7b702da9d75309c3
+e
+5src/main/java/at/fhtw/repository/ImageRepository.java,3/2/320963d470c96003e4e2cf10600673637daea934
+d
+4src/main/java/at/fhtw/repository/TourRepository.java,7/f/7f43f7764d40921b9e3b11004da48c2260f6a540
+c
+3src/main/java/at/fhtw/repository/LogRepository.java,c/2/c22c34c5e84aba58d38e5e38e020faec83af3d8d
+^
+.src/main/java/at/fhtw/service/TourService.java,a/a/aa3581e9b5b17e79fc1fbfda4157581d966b3db1

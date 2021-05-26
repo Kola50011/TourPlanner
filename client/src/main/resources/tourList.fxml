@@ -6,10 +6,9 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             fx:controller="at.fhtw.view.TourListController"
-            fx:id="tourListController"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:id="tourListController">
 
-    <VBox>
+    <VBox maxHeight="Infinity">
         <HBox maxWidth="Infinity">
             <Button onMouseClicked="#tourAddClicked" text="Add" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
             <Button onMouseClicked="#tourDeleteClicked" text="Delete" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>

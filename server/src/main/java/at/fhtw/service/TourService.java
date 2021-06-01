@@ -8,9 +8,10 @@ import at.fhtw.service.model.DetailedTour;
 import at.fhtw.service.model.Log;
 import at.fhtw.service.model.Tour;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,13 +22,14 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
+@Service
 public class TourService {
 
     private final TourRepository tourRepository;
     private final MapQuestClient mapQuestClient;
     private final ImageRepository imageRepository;
 
-    @Setter
+    @Autowired
     private LogService logService;
 
     public List<Tour> getAllTours() {

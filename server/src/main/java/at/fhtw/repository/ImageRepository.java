@@ -1,9 +1,11 @@
 package at.fhtw.repository;
 
+import at.fhtw.properties.MinioProperties;
 import io.minio.*;
 import io.minio.errors.ErrorResponseException;
 import io.minio.errors.MinioException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -11,21 +13,22 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 @Slf4j
+@Repository
 public class ImageRepository {
-    private static final String BUCKET_NAME = "tourplanner";
-    private static ImageRepository instance;
+    private final MinioProperties minioProperties;
     private MinioClient client;
 
-    private ImageRepository() {
+    private ImageRepository(MinioProperties minioProperties) {
+        this.minioProperties = minioProperties;
         try {
             client = MinioClient.builder()
-                    .endpoint("http://localhost:9000")
-                    .credentials("minio", "minioKey123")
+                    .endpoint(minioProperties.getEndpoint())
+                    .credentials(minioProperties.getAccesskey(), minioProperties.getSecretKey())
                     .build();
 
-            boolean found = client.bucketExists(BucketExistsArgs.builder().bucket(BUCKET_NAME).build());
+            boolean found = client.bucketExists(BucketExistsArgs.builder().bucket(minioProperties.getBucket()).build());
             if (!found) {
-                client.makeBucket(MakeBucketArgs.builder().bucket(BUCKET_NAME).build());
+                client.makeBucket(MakeBucketArgs.builder().bucket(minioProperties.getBucket()).build());
             } else {
                 log.info("Bucket 'tourplanner' already exists.");
             }
@@ -35,17 +38,10 @@ public class ImageRepository {
         }
     }
 
-    public static ImageRepository getInstance() {
-        if (instance == null) {
-            instance = new ImageRepository();
-        }
-        return instance;
-    }
-
     public boolean hasImage(String key) {
         try {
             client.statObject(StatObjectArgs.builder()
-                    .bucket(BUCKET_NAME)
+                    .bucket(minioProperties.getBucket())
                     .object(key)
                     .build());
             return true;
@@ -65,7 +61,7 @@ public class ImageRepository {
     public byte[] getImage(String key) {
         try {
             var res = client.getObject(GetObjectArgs.builder()
-                    .bucket(BUCKET_NAME)
+                    .bucket(minioProperties.getBucket())
                     .object(key)
                     .build());
             return res.readAllBytes();
@@ -81,7 +77,7 @@ public class ImageRepository {
         try {
             var inputStream = new ByteArrayInputStream(value);
             client.putObject(PutObjectArgs.builder()
-                    .bucket(BUCKET_NAME)
+                    .bucket(minioProperties.getBucket())
                     .object(key)
                     .stream(inputStream, inputStream.available(), -1)
                     .build());

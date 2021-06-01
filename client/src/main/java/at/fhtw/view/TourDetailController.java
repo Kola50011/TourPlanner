@@ -4,6 +4,7 @@ import at.fhtw.client.TourPlannerClientFactory;
 import at.fhtw.events.TourChangeEvent;
 import at.fhtw.viewModel.TourDetailViewModel;
 import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,8 +12,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +47,12 @@ public class TourDetailController {
 
     public void addNameChangeEventListener(EventHandler<TourChangeEvent> eventHandler) {
         nameChangedEventHandlers.add(eventHandler);
+    }
+
+    @SneakyThrows
+    public void reportClicked(ActionEvent actionEvent) {
+        java.awt.Desktop.getDesktop().browse(new URI("http://localhost:8080/tours/" +
+                tourDetailViewModel.getCurrentTour().getId() + "/report"));
     }
 
     @FXML

@@ -32,9 +32,6 @@ public class LogListController {
         fireChangeEvent(logId);
     }
 
-    public void logListClicked(MouseEvent mouseEvent) {
-        selectedLogChanged();
-    }
 
     public void logDeleteClicked(MouseEvent mouseEvent) {
         var logIdx = logListView.getSelectionModel().getSelectedIndex();
@@ -49,6 +46,10 @@ public class LogListController {
     public void setTour(int id) {
         logListViewModel.setTour(id);
         selectedLogChanged();
+    }
+
+    public void updateLogs() {
+        logListViewModel.updateLogs();
     }
 
     private void fireChangeEvent(int logId) {
@@ -73,5 +74,12 @@ public class LogListController {
     @FXML
     private void initialize() {
         logListView.itemsProperty().bindBidirectional(logListViewModel.getListProperty());
+        setupListChangedListener();
+    }
+
+    private void setupListChangedListener() {
+        logListView.getSelectionModel().selectedItemProperty().addListener((arg0, oldValue, newValue) -> {
+            selectedLogChanged();
+        });
     }
 }

@@ -22,5 +22,10 @@ public class LogsController {
                     logDetailController.setLog(logChangeEvent.getLogId());
                 }
         );
+
+        logDetailController.addLogChangeEventHandler(logChangeEvent -> {
+                    logListController.updateLogs();
+                }
+        );
     }
 }

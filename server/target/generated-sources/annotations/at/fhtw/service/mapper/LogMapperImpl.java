@@ -3,12 +3,14 @@ package at.fhtw.service.mapper;
 import at.fhtw.repository.model.LogEntity;
 import at.fhtw.service.model.Log;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-05-26T15:53:34+0200",
+    date = "2021-06-01T17:41:22+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
+@Component
 public class LogMapperImpl implements LogMapper {
 
     @Override

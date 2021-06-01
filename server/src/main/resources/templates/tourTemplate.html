@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h3 style="text-align: center; color: green">
+    <span th:text="'Tour Report'"></span>
+</h3>
+<span>
+    <p><b>Name: </b><span th:text="${name}"></span></p>
+    <p><b>Description: </b><span th:text="${description}"></span></p>
+    <p><b>Total distance: </b><span th:text="${distance}"></span></p>
+
+    <img th:src="@{'data:image/jpeg;base64,'+${image}}"/>
+
+    <tr th:each="log, iStat: ${logs}">
+        <p><b>Log <span th:text="${iStat.index + 1}"></span>:</b></p>
+
+        <p>
+            <b>From:</b>
+            <span th:text="${log.startLocation}"/>
+            <span th:text="${log.startTime}"/>
+        </p>
+
+        <p>
+            <b>To:</b>
+            <span th:text="${log.endLocation}"/>
+            <span th:text="${log.endTime}"/>
+        </p>
+
+        <p><b>Rating: </b><span th:text="${log.rating}"></span></p>
+        <p><b>Means of transportation: </b><span th:text="${log.meansOfTransport}"></span></p>
+        <p><b>Distance: </b><span th:text="${log.distance}"></span></p>
+        <br/>
+    </tr>
+
+</span>
+</body>
+</html>

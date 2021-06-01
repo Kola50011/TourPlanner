@@ -1,34 +1,16 @@
 package at.fhtw;
 
-import at.fhtw.client.MapQuestClient;
-import at.fhtw.controller.Api;
-import at.fhtw.repository.ConnectionFactory;
-import at.fhtw.repository.ImageRepository;
-import at.fhtw.repository.LogRepository;
-import at.fhtw.repository.TourRepository;
-import at.fhtw.service.LogService;
-import at.fhtw.service.TourService;
-import lombok.extern.slf4j.Slf4j;
+import at.fhtw.properties.DBProperties;
+import at.fhtw.properties.MinioProperties;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import java.io.IOException;
-
-@Slf4j
+@SpringBootApplication
+@EnableConfigurationProperties({MinioProperties.class, DBProperties.class})
 public class App {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        MapQuestClient mapQuestClient = new MapQuestClient();
-
-        LogRepository logRepository = new LogRepository(connectionFactory);
-        TourRepository tourRepository = new TourRepository(connectionFactory);
-        ImageRepository imageRepository = ImageRepository.getInstance();
-
-        LogService logService = new LogService(logRepository, mapQuestClient);
-        TourService tourService = new TourService(tourRepository, mapQuestClient, imageRepository);
-
-        tourService.setLogService(logService);
-        logService.setTourService(tourService);
-
-        Api api = new Api(logService, tourService);
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
     }
 }

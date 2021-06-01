@@ -4,6 +4,7 @@ import at.fhtw.repository.model.LogEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
+@Repository
 public class LogRepository {
 
     private final ConnectionFactory connectionFactory;
@@ -22,7 +24,7 @@ public class LogRepository {
     public List<LogEntity> getAllLogs() {
         List<LogEntity> res = new ArrayList<>();
         try (var connection = connectionFactory.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("select * from Log")) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from Log ")) {
                 var resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     res.add(LogEntity.builder()
@@ -74,7 +76,7 @@ public class LogRepository {
     public List<LogEntity> getLogsOfTour(int tourId) {
         List<LogEntity> res = new ArrayList<>();
         try (var connection = connectionFactory.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("select * from Log where tourid = ?")) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from Log where tourid = ? order by startTime")) {
                 statement.setInt(1, tourId);
                 var resultSet = statement.executeQuery();
                 while (resultSet.next()) {

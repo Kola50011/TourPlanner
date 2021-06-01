@@ -1,47 +1,66 @@
 package at.fhtw.controller;
 
+import at.fhtw.service.TourReportService;
 import at.fhtw.service.TourService;
 import at.fhtw.service.model.DetailedTour;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
+import at.fhtw.service.model.Tour;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
 
-
-@Slf4j
+@RestController
+@RequiredArgsConstructor
 public class ToursController {
-
+    private final TourReportService tourReportService;
     private final TourService tourService;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
-    public ToursController(TourService tourService) {
-        this.tourService = tourService;
+    @GetMapping(path = "/tours/{id}/report", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> getTourReport(@PathVariable int id) {
+        var content = tourReportService.generateReportForTour(id);
+
+        var headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        headers.add("Content-Disposition", "inline; filename=" + "output.pdf");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        return new ResponseEntity<>(content, headers, HttpStatus.OK);
     }
 
-    public String getTours() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(tourService.getAllTours());
+    @GetMapping(path = "/tours", produces = "application/json")
+    public List<Tour> getTours() {
+        return tourService.getAllTours();
     }
 
-    public Optional<String> getTour(int tour) throws IOException {
-        var optionalTour = tourService.getTour(tour);
-        if (optionalTour.isPresent()) {
-            return Optional.of(objectMapper.writeValueAsString(optionalTour.get()));
-        }
-        return Optional.empty();
-    }
-
-    public int putTour(String body) throws IOException {
-        var detailedTour = objectMapper.readValue(body, DetailedTour.class);
-        log.info("{}", detailedTour);
+    @PutMapping(path = "/tours")
+    public void putTour(@RequestBody DetailedTour detailedTour) {
         if (tourService.insertOrUpdateTour(detailedTour)) {
-            return 200;
+            return;
         }
-        return 500;
+        throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST, "Unable to update tour"
+        );
     }
 
-    public void deleteTour(int id) {
+    @DeleteMapping(path = "/tours/{id}")
+    public void deleteTour(@PathVariable int id) {
         tourService.deleteTour(id);
+    }
+
+    @GetMapping(path = "/tours/{id}", produces = "application/json")
+    private DetailedTour getTour(@PathVariable int id) {
+        var optionalTour = tourService.getTour(id);
+        if (optionalTour.isPresent()) {
+            return optionalTour.get();
+        }
+        throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tour not found"
+        );
     }
 }

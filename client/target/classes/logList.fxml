@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             fx:controller="at.fhtw.view.LogListController">
@@ -13,7 +15,7 @@
             <Button onMouseClicked="#logDeleteClicked" text="Delete" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
         </HBox>
 
-        <ListView fx:id="logListView" onMouseClicked="#logListClicked"/>
+        <ListView fx:id="logListView"/>
     </VBox>
 
 </AnchorPane>

@@ -44,11 +44,14 @@ public class TourListController {
 
         tourListView.getSelectionModel().select(0);
         selectedTourChanged();
+
+        setupListChangedListener();
     }
 
-    @FXML
-    private void tourListClicked() {
-        selectedTourChanged();
+    private void setupListChangedListener() {
+        tourListView.getSelectionModel().selectedItemProperty().addListener((arg0, oldValue, newValue) -> {
+            selectedTourChanged();
+        });
     }
 
     @FXML

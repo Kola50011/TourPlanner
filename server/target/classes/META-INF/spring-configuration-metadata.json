@@ -1,0 +1,52 @@
+{
+  "groups": [
+    {
+      "name": "db",
+      "type": "at.fhtw.properties.DBProperties",
+      "sourceType": "at.fhtw.properties.DBProperties"
+    },
+    {
+      "name": "minio",
+      "type": "at.fhtw.properties.MinioProperties",
+      "sourceType": "at.fhtw.properties.MinioProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "db.pass",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.DBProperties"
+    },
+    {
+      "name": "db.url",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.DBProperties"
+    },
+    {
+      "name": "db.user",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.DBProperties"
+    },
+    {
+      "name": "minio.accesskey",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.MinioProperties"
+    },
+    {
+      "name": "minio.bucket",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.MinioProperties"
+    },
+    {
+      "name": "minio.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.MinioProperties"
+    },
+    {
+      "name": "minio.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "at.fhtw.properties.MinioProperties"
+    }
+  ],
+  "hints": []
+}

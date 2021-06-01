@@ -50,4 +50,8 @@
     <Label text="NaN" fx:id="distanceLabel"
            GridPane.columnIndex="1" GridPane.rowIndex="4"
            GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+
+    <Button text="Save" fx:id="saveLogButton" maxWidth="Infinity" onAction="#saveButtonClicked"
+            GridPane.columnIndex="0" GridPane.rowIndex="5"
+            GridPane.columnSpan="3" GridPane.rowSpan="1"/>
 </GridPane>

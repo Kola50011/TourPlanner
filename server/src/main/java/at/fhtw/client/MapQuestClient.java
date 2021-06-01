@@ -6,11 +6,13 @@ import at.fhtw.client.model.RouteResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 
 @Slf4j
+@Component
 public class MapQuestClient {
     public static final MediaType JSON_TYPE
             = MediaType.get("application/json; charset=utf-8");

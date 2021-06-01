@@ -11,6 +11,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/2.5.0/spring-boot-configuration-processor-2.5.0.jar" />
         </processorPath>
         <module name="tourplanner" />
       </profile>
@@ -18,5 +19,10 @@
     <bytecodeTargetLevel>
       <module name="tourplanner" target="11" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tourplanner" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+    </option>
   </component>
 </project>

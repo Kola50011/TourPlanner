@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class LogDetailViewModel {
     @Getter
     private final Property<LocalDateTime> startDateProperty = new SimpleObjectProperty<>();
     @Getter
-    private final StringProperty simpleStringProperty = new SimpleStringProperty();
+    private final StringProperty startLocationProperty = new SimpleStringProperty();
     @Getter
     private final Property<LocalDateTime> endDateProperty = new SimpleObjectProperty<>();
     @Getter
@@ -43,6 +44,8 @@ public class LogDetailViewModel {
     private final StringProperty meansOfTransportationProperty = new SimpleStringProperty();
     @Getter
     private final StringProperty distanceProperty = new SimpleStringProperty();
+
+    @Getter
     private Log currentLog;
 
     public void setLog(int id) {
@@ -50,12 +53,25 @@ public class LogDetailViewModel {
         optinoalLog.ifPresent(log -> {
             currentLog = log;
             startDateProperty.setValue(currentLog.getStartTime().toLocalDateTime());
-            simpleStringProperty.setValue(currentLog.getStartLocation());
+            startLocationProperty.setValue(currentLog.getStartLocation());
             endDateProperty.setValue(currentLog.getEndTime().toLocalDateTime());
             endLocationProperty.setValue(currentLog.getEndLocation());
             ratingProperty.setValue(currentLog.getRating());
             meansOfTransportationProperty.setValue(currentLog.getMeansOfTransport());
             distanceProperty.setValue(String.valueOf(currentLog.getDistance()));
         });
+    }
+
+    public void saveLog() {
+        currentLog.setStartTime(Timestamp.valueOf(startDateProperty.getValue()));
+        currentLog.setStartLocation(startLocationProperty.getValue());
+        currentLog.setEndTime(Timestamp.valueOf(endDateProperty.getValue()));
+        currentLog.setEndLocation(endLocationProperty.getValue());
+        currentLog.setRating(ratingProperty.getValue().intValue());
+        currentLog.setMeansOfTransport(meansOfTransportationProperty.getValue());
+
+        tourPlannerClient.putLog(currentLog);
+
+        setLog(currentLog.getId());
     }
 }

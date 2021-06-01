@@ -11,4 +11,5 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RouteResponse {
     private Route route;
+    private Info info;
 }

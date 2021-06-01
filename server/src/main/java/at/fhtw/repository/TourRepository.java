@@ -3,6 +3,7 @@ package at.fhtw.repository;
 import at.fhtw.repository.model.TourEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
+@Repository
 public class TourRepository {
 
     private final ConnectionFactory connectionFactory;

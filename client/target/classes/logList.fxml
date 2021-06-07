@@ -7,15 +7,16 @@
 <?import javafx.scene.layout.VBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="at.fhtw.view.LogListController">
+            fx:controller="at.fhtw.view.LogListController"
+>
 
-    <VBox>
-        <HBox maxWidth="Infinity">
+    <VBox maxWidth="Infinity">
+        <HBox maxWidth="Infinity" VBox.vgrow="ALWAYS">
             <Button onMouseClicked="#logAddClicked" text="Add" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
             <Button onMouseClicked="#logDeleteClicked" text="Delete" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
         </HBox>
 
-        <ListView fx:id="logListView"/>
+        <ListView fx:id="logListView" VBox.vgrow="ALWAYS"/>
     </VBox>
 
 </AnchorPane>

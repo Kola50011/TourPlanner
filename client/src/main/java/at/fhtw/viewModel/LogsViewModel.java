@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import lombok.Getter;
 
 public class LogsViewModel {
-    private static LogsViewModel instance;
 
     @Getter
     private ObjectProperty<ObservableList<Log>> itemsProperty = new SimpleObjectProperty<>();

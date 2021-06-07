@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:id="menuAnchorPane"
+            fx:controller="at.fhtw.view.MenuController">
+
+    <MenuBar>
+        <menus>
+            <Menu text="File">
+                <items>
+                    <MenuItem text="Import" onAction="#onImportClicked"/>
+                    <MenuItem text="Export" onAction="#onExportClicked"/>
+                </items>
+            </Menu>
+
+            <Menu text="Reports">
+                <items>
+                    <MenuItem text="Generate summarize-report" onAction="#onReportClicked"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</AnchorPane>

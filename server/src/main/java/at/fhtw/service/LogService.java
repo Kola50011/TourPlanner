@@ -26,14 +26,19 @@ public class LogService {
     @Autowired
     private TourService tourService;
 
+    public List<Log> getLogs() {
+        List<Log> ret = new ArrayList<>();
+        for (var logEntity : (logRepository.getAllLogs())) {
+            var log = LogMapper.INSTANCE.logEntityToLog(logEntity);
+            ret.add(log);
+        }
+        return ret;
+    }
+
     public List<Log> getLogsOfTour(int tourId) {
         List<Log> ret = new ArrayList<>();
         for (var logEntity : (logRepository.getLogsOfTour(tourId))) {
             var log = LogMapper.INSTANCE.logEntityToLog(logEntity);
-
-//            var routeResponse = mapQuestClient.getRoute(List.of(log.getStartLocation(), log.getEndLocation()));
-//            log.setDistance(routeResponse.getRoute().getDistance());
-
             ret.add(log);
         }
         return ret;

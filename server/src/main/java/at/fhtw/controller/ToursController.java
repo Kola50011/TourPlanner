@@ -1,6 +1,6 @@
 package at.fhtw.controller;
 
-import at.fhtw.service.TourReportService;
+import at.fhtw.service.ReportService;
 import at.fhtw.service.TourService;
 import at.fhtw.service.model.DetailedTour;
 import at.fhtw.service.model.Tour;
@@ -17,12 +17,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class ToursController {
-    private final TourReportService tourReportService;
+    private final ReportService reportService;
     private final TourService tourService;
 
     @GetMapping(path = "/tours/{id}/report", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> getTourReport(@PathVariable int id) {
-        var content = tourReportService.generateReportForTour(id);
+        var content = reportService.generateReportForTour(id);
 
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

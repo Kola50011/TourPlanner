@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h3 style="text-align: center; color: green">
+    <span th:text="'Summarize Report'"></span>
+</h3>
+<span>
+    <p><b>Total time: </b><span th:text="${totalTime}"></span></p>
+    <p><b>Total distance: </b><span th:text="${totalDistance}"></span></p>
+
+    <tr th:each="log, iStat: ${logs}">
+        <p><b>Log <span th:text="${iStat.index + 1}"></span>:</b></p>
+
+        <p>
+            <b>From:</b>
+            <span th:text="${log.startLocation}"/>
+            <span th:text="${log.startTime}"/>
+        </p>
+
+        <p>
+            <b>To:</b>
+            <span th:text="${log.endLocation}"/>
+            <span th:text="${log.endTime}"/>
+        </p>
+
+        <p><b>Distance: </b><span th:text="${log.distance}"></span></p>
+
+    </tr>
+
+</span>
+</body>
+</html>

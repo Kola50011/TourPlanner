@@ -21,7 +21,6 @@ public class TourListController {
 
     public void addChangeEventListener(EventHandler<TourChangeEvent> eventHandler) {
         listChangedEventHandlers.add(eventHandler);
-        selectedTourChanged();
     }
 
     public void updateTourList() {
@@ -42,10 +41,16 @@ public class TourListController {
     private void initialize() {
         tourListView.itemsProperty().bindBidirectional(tourListViewModel.getTourNamesProperty());
 
-        tourListView.getSelectionModel().select(0);
-        selectedTourChanged();
+        selectFirstTour();
 
         setupListChangedListener();
+    }
+
+    private void selectFirstTour() {
+        if (tourListView.getItems().size() != 0) {
+            tourListView.getSelectionModel().select(0);
+            selectedTourChanged();
+        }
     }
 
     private void setupListChangedListener() {
@@ -78,9 +83,7 @@ public class TourListController {
         var tourId = tourListViewModel.tourIndexToId(tourIdx);
         tourListViewModel.deleteTour(tourId);
 
-        tourListView.getSelectionModel().select(0);
-        tourId = tourListViewModel.tourIndexToId(0);
-        fireChangeEvent(tourId);
+        selectFirstTour();
     }
 
     private void fireChangeEvent(int tourId) {

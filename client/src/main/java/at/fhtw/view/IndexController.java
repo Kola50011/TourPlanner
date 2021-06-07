@@ -13,15 +13,19 @@ public class IndexController {
     @FXML
     private TourDetailController tourDetailController;
 
+    @FXML
+    private MenuController menuController;
+
     @SneakyThrows
     @FXML
     public void initialize() {
-        tourListController.addChangeEventListener(tourChangeEvent -> {
-                    tourDetailController.setTour(tourChangeEvent.getTourId());
-                }
-        );
+        tourListController.addChangeEventListener(tourChangeEvent ->
+                tourDetailController.setTour(tourChangeEvent.getTourId()));
 
         tourDetailController.addNameChangeEventListener(tourChangeEvent ->
+                tourListController.updateTourList());
+
+        menuController.addChangeEventListener(tourChangeEvent ->
                 tourListController.updateTourList());
     }
 }

@@ -1,9 +1,13 @@
 package at.fhtw.controller;
 
 import at.fhtw.service.LogService;
+import at.fhtw.service.ReportService;
 import at.fhtw.service.model.Log;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -13,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LogsController {
     private final LogService logService;
+    private final ReportService reportService;
 
     @GetMapping(path = "/logs/{id}", produces = "application/json")
     public Log getLog(@PathVariable int id) {
@@ -43,5 +48,18 @@ public class LogsController {
         throw new ResponseStatusException(
                 HttpStatus.BAD_REQUEST, "Unable to update log"
         );
+    }
+
+    @GetMapping(path = "/logs/report", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> getLogsReport() {
+        var content = reportService.generateLogsReport();
+
+        var headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        headers.add("Content-Disposition", "inline; filename=" + "output.pdf");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        return new ResponseEntity<>(content, headers, HttpStatus.OK);
     }
 }

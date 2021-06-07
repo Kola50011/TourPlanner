@@ -97,6 +97,22 @@ public class TourRepository {
                 statement.setString(1, tourEntity.getName());
                 statement.setString(2, tourEntity.getDescription());
                 statement.setFloat(3, tourEntity.getDistance());
+
+                statement.execute();
+            }
+        }
+    }
+
+    public void insertTourWithId(TourEntity tourEntity) throws SQLException {
+        try (var connection = connectionFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("insert into Tour " +
+                    "(name, description, distance, id) " +
+                    "values (?, ?, ?, ?)")) {
+                statement.setString(1, tourEntity.getName());
+                statement.setString(2, tourEntity.getDescription());
+                statement.setFloat(3, tourEntity.getDistance());
+                statement.setInt(4, tourEntity.getId());
+
                 statement.execute();
             }
         }

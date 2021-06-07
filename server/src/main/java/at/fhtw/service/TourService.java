@@ -45,6 +45,19 @@ public class TourService {
         return ret;
     }
 
+    public List<DetailedTour> getAllDetailedTours() {
+        List<DetailedTour> ret = new ArrayList<>();
+        try {
+            for (var tourEntity : tourRepository.getAllTours()) {
+                var tour = TourMapper.INSTANCE.tourEntityToDetailedTour(tourEntity);
+                ret.add(tour);
+            }
+        } catch (SQLException e) {
+            log.error("Error in getting tours!", e);
+        }
+        return ret;
+    }
+
     public Optional<DetailedTour> getTour(int id) {
         try {
             var tourEntity = tourRepository.getTour(id);
@@ -52,12 +65,6 @@ public class TourService {
                 var tour = TourMapper.INSTANCE.tourEntityToDetailedTour(tourEntity.get());
 
                 tour.setImage(getImageOfTour(tour));
-//                var logs = logService.getLogsOfTour(tour.getId());
-
-//            var routeResponse = mapQuestClient.getRoute(logToLocations(logs));
-//            tour.setDistance(routeResponse.getRoute().getDistance());
-
-
                 return Optional.of(tour);
             }
         } catch (SQLException e) {
@@ -82,7 +89,12 @@ public class TourService {
             } else {
                 // Insert
                 var tourEntity = TourMapper.INSTANCE.detailedTourToTourEntity(detailedTour);
-                tourRepository.insertTour(tourEntity);
+
+                if (tourEntity.getId() != 0) {
+                    tourRepository.insertTourWithId(tourEntity);
+                } else {
+                    tourRepository.insertTour(tourEntity);
+                }
             }
         } catch (SQLException e) {
             log.error("Unable to insert or update tour! ", e);

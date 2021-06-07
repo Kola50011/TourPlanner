@@ -1,6 +1,7 @@
 package at.fhtw.client;
 
 import at.fhtw.client.model.DetailedTour;
+import at.fhtw.client.model.ImportExport;
 import at.fhtw.client.model.Log;
 import at.fhtw.client.model.Tour;
 import feign.Headers;
@@ -11,6 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TourPlannerClient {
+
+    @RequestLine("GET /export")
+    ImportExport getExport();
+
+    @RequestLine("PUT /import")
+    @Headers("Content-Type: application/json")
+    void putImport(ImportExport importExport);
 
     @RequestLine("GET /tours")
     List<Tour> getTours();

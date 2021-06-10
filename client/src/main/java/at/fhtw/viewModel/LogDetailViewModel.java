@@ -49,8 +49,8 @@ public class LogDetailViewModel {
     private Log currentLog;
 
     public void setLog(int id) {
-        var optinoalLog = tourPlannerClient.getLog(id);
-        optinoalLog.ifPresent(log -> {
+        var optionalLog = tourPlannerClient.getLog(id);
+        optionalLog.ifPresentOrElse(log -> {
             currentLog = log;
             startDateProperty.setValue(currentLog.getStartTime().toLocalDateTime());
             startLocationProperty.setValue(currentLog.getStartLocation());
@@ -59,7 +59,7 @@ public class LogDetailViewModel {
             ratingProperty.setValue(currentLog.getRating());
             meansOfTransportationProperty.setValue(currentLog.getMeansOfTransport());
             distanceProperty.setValue(String.valueOf(currentLog.getDistance()));
-        });
+        }, this::clearFields);
     }
 
     public void saveLog() {
@@ -73,5 +73,15 @@ public class LogDetailViewModel {
         tourPlannerClient.putLog(currentLog);
 
         setLog(currentLog.getId());
+    }
+
+    private void clearFields() {
+        startDateProperty.setValue(LocalDateTime.now());
+        startLocationProperty.setValue("");
+        endDateProperty.setValue(LocalDateTime.now());
+        endLocationProperty.setValue("");
+        ratingProperty.setValue(0);
+        meansOfTransportationProperty.setValue("");
+        distanceProperty.setValue("");
     }
 }

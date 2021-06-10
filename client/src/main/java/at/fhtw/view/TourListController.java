@@ -1,6 +1,7 @@
 package at.fhtw.view;
 
 import at.fhtw.client.TourPlannerClientFactory;
+import at.fhtw.client.model.Filter;
 import at.fhtw.events.TourChangeEvent;
 import at.fhtw.viewModel.TourListViewModel;
 import javafx.event.EventHandler;
@@ -27,21 +28,28 @@ public class TourListController {
         tourListViewModel.updateTours();
     }
 
+    public void setFilter(Filter filter) {
+        tourListViewModel.setToursFilter(filter.getTourIDs());
+        tourListViewModel.updateTours();
+    }
+
     private void selectedTourChanged() {
-        var tourIdx = tourListView.getSelectionModel().getSelectedIndex();
-        if (tourIdx == -1) {
-            tourListView.getSelectionModel().select(0);
-            tourIdx = 0;
+        if (tourListView.getItems().size() != 0) {
+            var tourIdx = tourListView.getSelectionModel().getSelectedIndex();
+            if (tourIdx == -1) {
+                tourListView.getSelectionModel().select(0);
+                tourIdx = 0;
+            }
+            var tourId = tourListViewModel.tourIndexToId(tourIdx);
+            fireChangeEvent(tourId);
+        } else {
+            fireChangeEvent(-1);
         }
-        var tourId = tourListViewModel.tourIndexToId(tourIdx);
-        fireChangeEvent(tourId);
     }
 
     @FXML
     private void initialize() {
         tourListView.itemsProperty().bindBidirectional(tourListViewModel.getTourNamesProperty());
-
-        selectFirstTour();
 
         setupListChangedListener();
     }

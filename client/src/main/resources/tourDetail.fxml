@@ -4,7 +4,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <TabPane xmlns:fx="http://javafx.com/fxml"
-         fx:controller="at.fhtw.view.TourDetailController">
+         fx:id="tourDetailPane"
+         fx:controller="at.fhtw.view.TourDetailController"
+         visible="false">
     <Tab fx:id="infoTab" text="Info" closable="false">
         <GridPane hgap="10" vgap="10">
             <columnConstraints>

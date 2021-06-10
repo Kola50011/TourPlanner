@@ -3,6 +3,8 @@ package at.fhtw.client;
 import at.fhtw.client.model.DetailedTour;
 import at.fhtw.client.model.ImportExport;
 import at.fhtw.client.model.Log;
+import at.fhtw.client.model.SearchRequest;
+import at.fhtw.client.model.SearchResult;
 import at.fhtw.client.model.Tour;
 import feign.Headers;
 import feign.Param;
@@ -45,4 +47,8 @@ public interface TourPlannerClient {
 
     @RequestLine("DELETE /logs/{logId}")
     void deleteLog(@Param("logId") int logId);
+
+    @RequestLine("POST /search")
+    @Headers("Content-Type: application/json")
+    SearchResult search(SearchRequest searchRequest);
 }

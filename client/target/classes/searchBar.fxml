@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          xmlns="http://javafx.com/javafx"
+          fx:controller="at.fhtw.view.SearchController"
+          hgap="10">
+
+    <columnConstraints>
+        <ColumnConstraints percentWidth="80"/>
+        <ColumnConstraints percentWidth="10"/>
+        <ColumnConstraints percentWidth="10"/>
+    </columnConstraints>
+
+    <TextField fx:id="searchField" maxWidth="Infinity"
+               onAction="#searchClicked"
+               GridPane.columnIndex="0" GridPane.rowIndex="0"
+               GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+
+    <Button text="Search"
+            onMouseClicked="#searchClicked"
+            GridPane.hgrow="ALWAYS" maxWidth="Infinity"
+            GridPane.columnIndex="1" GridPane.rowIndex="0"
+            GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+    <Button text="Clear"
+            onMouseClicked="#clearClicked"
+            GridPane.hgrow="ALWAYS" maxWidth="Infinity"
+            GridPane.columnIndex="2" GridPane.rowIndex="0"
+            GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+</GridPane>

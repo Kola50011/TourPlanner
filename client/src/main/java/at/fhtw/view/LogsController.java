@@ -1,5 +1,6 @@
 package at.fhtw.view;
 
+import at.fhtw.client.model.Filter;
 import javafx.fxml.FXML;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +15,10 @@ public class LogsController {
 
     public void setTour(int id) {
         logListController.setTour(id);
+    }
+
+    public void setFilter(Filter filter) {
+        logListController.setFilter(filter);
     }
 
     @FXML

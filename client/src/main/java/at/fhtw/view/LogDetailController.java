@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import lombok.extern.slf4j.Slf4j;
 import tornadofx.control.DateTimePicker;
 
@@ -35,9 +36,16 @@ public class LogDetailController {
     private ComboBox<String> meansOfTransportationComboBox;
     @FXML
     private Label distanceLabel;
+    @FXML
+    private GridPane logDetailPane;
 
     public void setLog(int id) {
-        logDetailViewModel.setLog(id);
+        if (id == -1) {
+            logDetailPane.setVisible(false);
+        } else {
+            logDetailPane.setVisible(true);
+            logDetailViewModel.setLog(id);
+        }
     }
 
     public void addLogChangeEventHandler(EventHandler<LogChangeEvent> eventHandler) {

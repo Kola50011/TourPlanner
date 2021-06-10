@@ -30,6 +30,11 @@ public class LogsController {
         );
     }
 
+    @GetMapping(path = "/logs", produces = "application/json")
+    public List<Log> getLogs() {
+        return logService.getLogs();
+    }
+
     @DeleteMapping(path = "/logs/{id}")
     public void deleteLog(@PathVariable int id) {
         logService.deleteLog(id);
@@ -59,6 +64,16 @@ public class LogsController {
 
         headers.add("Content-Disposition", "inline; filename=" + "output.pdf");
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        return new ResponseEntity<>(content, headers, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/logs/htmlReport", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<String> getLogsReportHtml() {
+        var content = reportService.generateLogsReportHtml();
+
+        var headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_HTML);
 
         return new ResponseEntity<>(content, headers, HttpStatus.OK);
     }

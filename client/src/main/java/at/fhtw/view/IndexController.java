@@ -16,6 +16,9 @@ public class IndexController {
     @FXML
     private MenuController menuController;
 
+    @FXML
+    private SearchController searchController;
+
     @SneakyThrows
     @FXML
     public void initialize() {
@@ -27,5 +30,11 @@ public class IndexController {
 
         menuController.addChangeEventListener(tourChangeEvent ->
                 tourListController.updateTourList());
+
+        searchController.addFilterEventHandler(filterEvent ->
+                tourListController.setFilter(filterEvent.getFilter()));
+
+        searchController.addFilterEventHandler(filterEvent ->
+                tourDetailController.setFilter(filterEvent.getFilter()));
     }
 }

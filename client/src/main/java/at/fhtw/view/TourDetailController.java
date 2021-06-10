@@ -1,6 +1,7 @@
 package at.fhtw.view;
 
 import at.fhtw.client.TourPlannerClientFactory;
+import at.fhtw.client.model.Filter;
 import at.fhtw.events.TourChangeEvent;
 import at.fhtw.viewModel.TourDetailViewModel;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -9,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -24,6 +26,7 @@ import java.util.List;
 public class TourDetailController {
 
     private final List<EventHandler<TourChangeEvent>> nameChangedEventHandlers = new ArrayList<>();
+
     @FXML
     public LogsController logsController;
     @FXML
@@ -34,15 +37,20 @@ public class TourDetailController {
     private TextArea descriptionField;
     @FXML
     private Tab logsTab;
-
+    @FXML
+    private TabPane tourDetailPane;
     @FXML
     private ImageView routeImageView;
-
     private TourDetailViewModel tourDetailViewModel;
 
     public void setTour(int id) {
-        tourDetailViewModel.setTour(id);
-        logsController.setTour(id);
+        if (id == -1) {
+            tourDetailPane.setVisible(false);
+        } else {
+            tourDetailPane.setVisible(true);
+            tourDetailViewModel.setTour(id);
+            logsController.setTour(id);
+        }
     }
 
     public void addNameChangeEventListener(EventHandler<TourChangeEvent> eventHandler) {
@@ -53,6 +61,10 @@ public class TourDetailController {
     public void reportClicked(ActionEvent actionEvent) {
         java.awt.Desktop.getDesktop().browse(new URI("http://localhost:8080/tours/" +
                 tourDetailViewModel.getCurrentTour().getId() + "/report"));
+    }
+
+    public void setFilter(Filter filter) {
+        logsController.setFilter(filter);
     }
 
     @FXML

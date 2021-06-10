@@ -14,7 +14,6 @@ import java.util.Base64;
 
 public class TourDetailViewModel {
 
-    private static TourDetailViewModel instance;
     @Getter
     private final StringProperty nameField = new SimpleStringProperty();
     @Getter
@@ -34,7 +33,9 @@ public class TourDetailViewModel {
     }
 
     public void updateCurrentTour() {
-        setTour(currentTour.getId());
+        if (currentTour != null) {
+            setTour(currentTour.getId());
+        }
     }
 
     public void setTour(int id) {
@@ -49,8 +50,13 @@ public class TourDetailViewModel {
             nameField.setValue(currentTour.getName());
             totalDistanceLabel.setValue(Float.toString(currentTour.getDistance()));
             descriptionField.set(currentTour.getDescription());
-            updateImage();
+        } else {
+            currentTour = null;
+            nameField.setValue("");
+            totalDistanceLabel.setValue("-1");
+            descriptionField.set("");
         }
+        updateImage();
     }
 
     public void updateTourName() {
@@ -70,13 +76,16 @@ public class TourDetailViewModel {
     }
 
     private void updateImage() {
-        if (currentTour.getImage().length() != 0) {
+        clearImage();
+        if (currentTour != null && currentTour.getImage().length() != 0) {
             byte[] imageBytes = Base64.getDecoder().decode(currentTour.getImage());
             Image image = new Image(new ByteArrayInputStream(imageBytes));
             imageProperty.setValue(image);
-        } else {
-            Image image = new Image(new ByteArrayInputStream(new byte[0]));
-            imageProperty.setValue(image);
         }
+    }
+
+    private void clearImage() {
+        Image image = new Image(new ByteArrayInputStream(new byte[0]));
+        imageProperty.setValue(image);
     }
 }

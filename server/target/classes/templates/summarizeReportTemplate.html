@@ -1,31 +1,56 @@
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="css/tailwind.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" media="all" rel="stylesheet" type="text/css"/>
+</head>
 <body>
-<h3 style="text-align: center; color: green">
+<h1 class="text-center tracking-wider text-4xl mt-10 mb-12">
     <span th:text="'Summarize Report'"></span>
-</h3>
-<span>
-    <p><b>Total time: </b><span th:text="${totalTime}"></span></p>
-    <p><b>Total distance: </b><span th:text="${totalDistance}"></span></p>
+</h1>
 
-    <tr th:each="log, iStat: ${logs}">
-        <p><b>Log <span th:text="${iStat.index + 1}"></span>:</b></p>
+<div class="p-8">
+    <div class="grid grid-cols-2 grid-rows-1">
+        <div><h2 class="text-gray-500">Total time</h2>
+            <p class="font-bold text-3xl" th:text="${totalTime}"></p>
+        </div>
+        <div><h2 class="text-gray-500">Total distance</h2>
+            <p class="font-bold text-3xl" th:text="${totalDistance}"></p>
+        </div>
+    </div>
 
-        <p>
-            <b>From:</b>
-            <span th:text="${log.startLocation}"/>
-            <span th:text="${log.startTime}"/>
-        </p>
+    <table class="mt-12 min-w-full divide-y divide-gray-200 text-primary">
+        <thead class="bg-gray-200">
+        <tr>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">From</th>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Start-time</th>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">To</th>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">End-time</th>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Distance</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+        <tr th:each="log, iStat: ${logs}">
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span th:text="${log.startLocation}"/>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span th:text="${log.startTime}"/>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span th:text="${log.endLocation}"/>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span th:text="${log.endTime}"/>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span th:text="${log.distance}"/>
+            </td>
+        </tr>
+        </tbody>
 
-        <p>
-            <b>To:</b>
-            <span th:text="${log.endLocation}"/>
-            <span th:text="${log.endTime}"/>
-        </p>
+    </table>
+</div>
 
-        <p><b>Distance: </b><span th:text="${log.distance}"></span></p>
-
-    </tr>
-
-</span>
 </body>
 </html>

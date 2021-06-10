@@ -11,8 +11,10 @@ public class TemplateEngineConfig {
     @Bean
     public TemplateEngine getTemplateEngine() {
         var templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML");
+        templateResolver.setCharacterEncoding("UTF-8");
 
         var templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);

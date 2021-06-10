@@ -7,10 +7,13 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TourListViewModel {
     private final TourPlannerClient tourPlannerClient;
@@ -18,6 +21,10 @@ public class TourListViewModel {
     private final ListProperty<String> tourNamesProperty = new SimpleListProperty<>();
 
     private List<Tour> toursList;
+
+    @Setter
+    private Set<String> toursFilter = new HashSet<>();
+
 
     public TourListViewModel(TourPlannerClient tourPlannerClient) {
         this.tourPlannerClient = tourPlannerClient;
@@ -49,8 +56,10 @@ public class TourListViewModel {
 
         var tours = tourPlannerClient.getTours();
         for (var tour : tours) {
-            tourNamesList.add(tour.getName());
-            toursList.add(tour);
+            if (toursFilter.isEmpty() || toursFilter.contains(Integer.toString(tour.getId()))) {
+                tourNamesList.add(tour.getName());
+                toursList.add(tour);
+            }
         }
 
         tourNamesProperty.set(FXCollections.observableArrayList(tourNamesList));

@@ -3,9 +3,13 @@ package at.fhtw.client;
 import at.fhtw.client.model.BoundingBox;
 import at.fhtw.client.model.RouteRequest;
 import at.fhtw.client.model.RouteResponse;
+import at.fhtw.properties.MapQuestProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,21 +18,16 @@ import java.util.List;
 @Slf4j
 @Component
 public class MapQuestClient {
-    public static final MediaType JSON_TYPE
-            = MediaType.get("application/json; charset=utf-8");
-    private static final String KEY = "MRJrIUJ2BwcAJfaA1BiejGn5fV90wDHL";
+    private final OkHttpClient httpClient = new OkHttpClient();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private OkHttpClient httpClient = new OkHttpClient();
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final HttpUrl baseUrl;
 
-    private HttpUrl baseUrl = new HttpUrl.Builder()
-            .scheme("https")
-            .host("www.mapquestapi.com")
-            .build();
-
-    public MapQuestClient() {
-        baseUrl = this.baseUrl.newBuilder()
-                .addQueryParameter("key", KEY)
+    public MapQuestClient(MapQuestProperties mapQuestProperties) {
+        baseUrl = new HttpUrl.Builder()
+                .scheme("https")
+                .host(mapQuestProperties.getEndpoint())
+                .addQueryParameter("key", mapQuestProperties.getSecretKey())
                 .build();
     }
 

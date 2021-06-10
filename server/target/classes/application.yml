@@ -8,3 +8,7 @@ db:
   user: user
   pass: pass
   url: jdbc:postgresql://localhost/tourplanner
+
+map-quest:
+  secretKey: MRJrIUJ2BwcAJfaA1BiejGn5fV90wDHL
+  endpoint: www.mapquestapi.com

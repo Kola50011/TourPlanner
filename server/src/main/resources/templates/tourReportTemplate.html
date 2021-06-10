@@ -1,4 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="css/tailwind.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" media="all" rel="stylesheet" type="text/css"/>
+</head>
 <body>
 <h3 style="text-align: center; color: green">
     <span th:text="'Tour Report'"></span>
@@ -10,27 +14,7 @@
 
     <img th:src="@{'data:image/jpeg;base64,'+${image}}"/>
 
-    <tr th:each="log, iStat: ${logs}">
-        <p><b>Log <span th:text="${iStat.index + 1}"></span>:</b></p>
-
-        <p>
-            <b>From:</b>
-            <span th:text="${log.startLocation}"/>
-            <span th:text="${log.startTime}"/>
-        </p>
-
-        <p>
-            <b>To:</b>
-            <span th:text="${log.endLocation}"/>
-            <span th:text="${log.endTime}"/>
-        </p>
-
-        <p><b>Rating: </b><span th:text="${log.rating}"></span></p>
-        <p><b>Means of transportation: </b><span th:text="${log.meansOfTransport}"></span></p>
-        <p><b>Distance: </b><span th:text="${log.distance}"></span></p>
-        <br/>
-    </tr>
-
+    <div th:insert="logsTable :: logsTable"></div>
 </span>
 </body>
 </html>

@@ -30,6 +30,8 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.0" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.27" level="project" />
     <orderEntry type="library" name="Maven: no.tornado:tornadofx-controls:1.0.6" level="project" />
     <orderEntry type="library" name="Maven: io.github.openfeign:feign-core:11.2" level="project" />
     <orderEntry type="library" name="Maven: io.github.openfeign:feign-jackson:11.2" level="project" />

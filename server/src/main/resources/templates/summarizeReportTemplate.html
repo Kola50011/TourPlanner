@@ -19,37 +19,8 @@
         </div>
     </div>
 
-    <table class="mt-12 min-w-full divide-y divide-gray-200 text-primary">
-        <thead class="bg-gray-200">
-        <tr>
-            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">From</th>
-            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Start-time</th>
-            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">To</th>
-            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">End-time</th>
-            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Distance</th>
-        </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-        <tr th:each="log, iStat: ${logs}">
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.startLocation}"/>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.startTime}"/>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.endLocation}"/>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.endTime}"/>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.distance}"/>
-            </td>
-        </tr>
-        </tbody>
+    <div th:insert="logsTable :: logsTable"></div>
 
-    </table>
 </div>
 
 </body>

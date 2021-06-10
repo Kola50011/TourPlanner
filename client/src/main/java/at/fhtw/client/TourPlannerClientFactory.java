@@ -1,5 +1,6 @@
 package at.fhtw.client;
 
+import at.fhtw.properties.PropertyReader;
 import feign.Feign;
 import feign.Logger;
 import feign.jackson.JacksonDecoder;
@@ -11,6 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class TourPlannerClientFactory {
+
+    private TourPlannerClientFactory() {
+    }
+
     public static TourPlannerClient getClient() {
         // TODO Make Mockable
         return Feign.builder()
@@ -20,6 +25,6 @@ public class TourPlannerClientFactory {
                 .decode404()
                 .logger(new Slf4jLogger())
                 .logLevel(Logger.Level.FULL)
-                .target(TourPlannerClient.class, "http://127.0.0.1:8080");
+                .target(TourPlannerClient.class, PropertyReader.getProperties().getEndpoint());
     }
 }

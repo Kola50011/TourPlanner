@@ -6,14 +6,12 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
 
-@ConfigurationProperties("db")
+@ConfigurationProperties("map-quest")
 @Data
 @Validated
-public class DBProperties {
+public class MapQuestProperties {
     @NotNull
-    private String user;
+    private String secretKey;
     @NotNull
-    private String pass;
-    @NotNull
-    private String url;
+    private String endpoint;
 }

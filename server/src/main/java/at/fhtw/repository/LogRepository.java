@@ -27,18 +27,7 @@ public class LogRepository {
             try (PreparedStatement statement = connection.prepareStatement("select * from Log ")) {
                 var resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    res.add(LogEntity.builder()
-                            .id(resultSet.getInt("id"))
-                            .tourId(resultSet.getInt("tourId"))
-                            .startTime(resultSet.getTimestamp("startTime"))
-                            .endTime(resultSet.getTimestamp("endTime"))
-                            .startLocation(resultSet.getString("startLocation"))
-                            .endLocation(resultSet.getString("endLocation"))
-                            .endTime(resultSet.getTimestamp("endTime"))
-                            .rating(resultSet.getInt("rating"))
-                            .meansOfTransport(resultSet.getString("meansOfTransport"))
-                            .distance(resultSet.getFloat("distance"))
-                            .build());
+                    res.add(resultSetToLogEntity(resultSet));
                 }
             }
         }
@@ -87,13 +76,30 @@ public class LogRepository {
         return res;
     }
 
+    @SneakyThrows
+    public float getDistanceOfTour(int tourId) {
+        float distance = 0;
+        try (var connection = connectionFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select sum(distance) as distance " +
+                    "from Log where tourid = ?")) {
+                statement.setInt(1, tourId);
+                var resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    return resultSet.getFloat("distance");
+                }
+            }
+        }
+        return distance;
+    }
+
     public void updateLog(LogEntity logEntity) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("update Log set " +
                     "tourId = ?, startTime = ?, startLocation = ?, endTime = ?, endLocation = ?," +
-                    "rating = ?, meansOfTransport = ?, distance = ? where id = ?")) {
+                    "rating = ?, meansOfTransport = ?, distance = ?, notes = ?, moneySpent = ? " +
+                    "where id = ?")) {
                 fillPreparedStatementWithLogEntity(statement, logEntity);
-                statement.setInt(9, logEntity.getId());
+                statement.setInt(11, logEntity.getId());
                 statement.executeUpdate();
             }
         }
@@ -102,8 +108,9 @@ public class LogRepository {
     public void insertTour(LogEntity logEntity) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("insert into Log " +
-                    "(tourid, startTime, startLocation, endTime, endLocation, rating, meansoftransport, distance) " +
-                    "values (?, ?, ?, ?, ?, ?, ? ,?)")) {
+                    "(tourid, startTime, startLocation, endTime, endLocation, " +
+                    "rating, meansoftransport, distance, notes, moneySpent) " +
+                    "values (?, ?, ?, ?, ?, ?, ? ,?, ?, ?)")) {
                 fillPreparedStatementWithLogEntity(statement, logEntity);
                 statement.execute();
             }
@@ -128,6 +135,9 @@ public class LogRepository {
         statement.setInt(6, logEntity.getRating());
         statement.setString(7, logEntity.getMeansOfTransport());
         statement.setFloat(8, logEntity.getDistance());
+        statement.setString(9, logEntity.getNotes());
+        statement.setString(10, logEntity.getMoneySpent());
+
     }
 
     private LogEntity resultSetToLogEntity(ResultSet resultSet) throws SQLException {
@@ -142,6 +152,8 @@ public class LogRepository {
                 .rating(resultSet.getInt("rating"))
                 .meansOfTransport(resultSet.getString("meansOfTransport"))
                 .distance(resultSet.getFloat("distance"))
+                .notes(resultSet.getString("notes"))
+                .moneySpent(resultSet.getString("moneySpent"))
                 .build();
     }
 }

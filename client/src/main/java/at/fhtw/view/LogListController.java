@@ -41,10 +41,7 @@ public class LogListController {
         var logIdx = logListView.getSelectionModel().getSelectedIndex();
         var logId = logListViewModel.logIndexToId(logIdx);
         logListViewModel.deleteLog(logId);
-
-        logListView.getSelectionModel().select(0);
-        logId = logListViewModel.logIndexToId(0);
-        fireChangeEvent(logId);
+        selectedLogChanged();
     }
 
     public void setTour(int id) {

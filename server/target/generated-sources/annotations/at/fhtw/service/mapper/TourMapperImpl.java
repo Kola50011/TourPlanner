@@ -8,25 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-06-10T16:52:30+0200",
+    date = "2021-06-14T15:56:59+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
 @Component
 public class TourMapperImpl implements TourMapper {
-
-    @Override
-    public TourEntity tourToTourEntity(Tour tour) {
-        if ( tour == null ) {
-            return null;
-        }
-
-        TourEntity tourEntity = new TourEntity();
-
-        tourEntity.setId( tour.getId() );
-        tourEntity.setName( tour.getName() );
-
-        return tourEntity;
-    }
 
     @Override
     public TourEntity detailedTourToTourEntity(DetailedTour tour) {
@@ -48,7 +34,6 @@ public class TourMapperImpl implements TourMapper {
         else {
             tourEntity.setDescription( "" );
         }
-        tourEntity.setDistance( tour.getDistance() );
         tourEntity.setId( tour.getId() );
 
         return tourEntity;
@@ -67,7 +52,6 @@ public class TourMapperImpl implements TourMapper {
         if ( detailedTour.getDescription() != null ) {
             tourEntity.setDescription( detailedTour.getDescription() );
         }
-        tourEntity.setDistance( detailedTour.getDistance() );
 
         return tourEntity;
     }
@@ -97,7 +81,6 @@ public class TourMapperImpl implements TourMapper {
         detailedTour.setId( tourEntity.getId() );
         detailedTour.setName( tourEntity.getName() );
         detailedTour.setDescription( tourEntity.getDescription() );
-        detailedTour.setDistance( tourEntity.getDistance() );
 
         return detailedTour;
     }

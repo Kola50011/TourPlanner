@@ -1,10 +1,6 @@
 
-f
-6src/main/java/at/fhtw/client/OldTourPlannerClient.java,f/6/f63acb6e659521a9c0ead6858176496e18eb68d1
 \
 ,src/main/java/at/fhtw/client/model/Tour.java,5/8/58613b94f30b7ab6f62dcb63b48a433f6d6c856e
-[
-+src/main/java/at/fhtw/client/model/Log.java,a/d/ad4712a3a4067aaa787d72a29092d242497442cc
 a
 1src/main/java/at/fhtw/events/TourChangeEvent.java,1/e/1e64382c317aca1cff24bd7ad46d9e22c003f537
 d
@@ -31,24 +27,16 @@ e
 0src/main/java/at/fhtw/view/SearchController.java,8/0/8072cff8676549020712b8cba2c8e5c057288ba4
 h
 8src/main/java/at/fhtw/viewModel/TourDetailViewModel.java,9/d/9d036882500c9d50e143acc9acbb582d8b7bf4ad
-g
-7src/main/java/at/fhtw/viewModel/LogDetailViewModel.java,e/4/e411e3e3ab3cc1a66f4076daeec0c207872257e7
 b
 2src/main/java/at/fhtw/viewModel/LogsViewModel.java,8/6/8697721ce02ca2a5c963831ab52dba09ac259f6a
-c
-3src/main/java/at/fhtw/view/LogDetailController.java,2/d/2d76b403a5b922ba804fb543876a424635e25089
 b
 2src/main/java/at/fhtw/view/TourListController.java,8/e/8ea98a532fa661d911d558cd89d147d0b9a66f59
 d
 4src/main/java/at/fhtw/view/TourDetailController.java,b/1/b16ee433d6b8089d1f98c0efe38105e8bc758221
-e
-5src/main/java/at/fhtw/viewModel/LogListViewModel.java,8/c/8ce965ca39e477c6444ba2caa9c61ce25b2e966b
 f
 6src/main/java/at/fhtw/viewModel/TourListViewModel.java,9/9/990cac62a9b0eec84ff1d7db1fe38bc1d9d83bb4
 ^
 .src/main/java/at/fhtw/view/LogsController.java,2/a/2accc2012f9ce0ecd43a5d60fcda5cfba1550a1a
-a
-1src/main/java/at/fhtw/view/LogListController.java,4/8/485f0938a0c360bbc37f653c4578ad895ab1dd4b
 ^
 .src/main/java/at/fhtw/client/model/Filter.java,3/d/3d13543d1537452a1a085e25a161fa5246243648
 _
@@ -57,9 +45,5 @@ _
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 c
 3src/main/java/at/fhtw/client/TourPlannerClient.java,b/7/b735cdf4a05579aece51cbe03c35a696c8f3e79c
-d
-4src/main/java/at/fhtw/properties/PropertyReader.java,4/8/4863cc59568c62df4db556cf67583e66f1b82b5b
-k
-;src/main/java/at/fhtw/properties/ApplicationProperties.java,7/4/744144a966a871406f131b95def756946ee09180
 j
 :src/main/java/at/fhtw/client/TourPlannerClientFactory.java,5/0/50d0d4d4e238a140d042560259d680776e3587f8

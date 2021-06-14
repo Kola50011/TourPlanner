@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,10 @@ public class LogDetailController {
     @FXML
     private Label distanceLabel;
     @FXML
+    private TextField moneySpentField;
+    @FXML
+    private TextArea notesField;
+    @FXML
     private GridPane logDetailPane;
 
     public void setLog(int id) {
@@ -62,6 +67,8 @@ public class LogDetailController {
         meansOfTransportationComboBox.valueProperty().bindBidirectional(logDetailViewModel.getMeansOfTransportationProperty());
         ratingSlider.valueProperty().bindBidirectional(logDetailViewModel.getRatingProperty());
         distanceLabel.textProperty().bindBidirectional(logDetailViewModel.getDistanceProperty());
+        moneySpentField.textProperty().bindBidirectional(logDetailViewModel.getMoneySpentProperty());
+        notesField.textProperty().bindBidirectional(logDetailViewModel.getNotesProperty());
     }
 
     @FXML
@@ -76,5 +83,4 @@ public class LogDetailController {
             eventHandler.handle(event);
         }
     }
-
 }

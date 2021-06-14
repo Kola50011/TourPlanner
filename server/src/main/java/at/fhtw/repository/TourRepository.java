@@ -28,7 +28,6 @@ public class TourRepository {
                             .id(resultSet.getInt("id"))
                             .name(resultSet.getString("name"))
                             .description(resultSet.getString("description"))
-                            .distance(resultSet.getFloat("distance"))
                             .build());
                 }
             }
@@ -46,7 +45,6 @@ public class TourRepository {
                             .id(resultSet.getInt("id"))
                             .name(resultSet.getString("name"))
                             .description(resultSet.getString("description"))
-                            .distance(resultSet.getFloat("distance"))
                             .build());
                 }
             }
@@ -79,11 +77,10 @@ public class TourRepository {
     public void updateTour(TourEntity tourEntity) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("update Tour set " +
-                    "name = ?, description = ?, distance = ? where id = ?")) {
+                    "name = ?, description = ? where id = ?")) {
                 statement.setString(1, tourEntity.getName());
                 statement.setString(2, tourEntity.getDescription());
-                statement.setFloat(3, tourEntity.getDistance());
-                statement.setInt(4, tourEntity.getId());
+                statement.setInt(3, tourEntity.getId());
                 statement.executeUpdate();
             }
         }
@@ -92,11 +89,10 @@ public class TourRepository {
     public void insertTour(TourEntity tourEntity) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("insert into Tour " +
-                    "(name, description, distance) " +
-                    "values (?, ?, ?)")) {
+                    "(name, description) " +
+                    "values (?, ?)")) {
                 statement.setString(1, tourEntity.getName());
                 statement.setString(2, tourEntity.getDescription());
-                statement.setFloat(3, tourEntity.getDistance());
 
                 statement.execute();
             }
@@ -106,12 +102,11 @@ public class TourRepository {
     public void insertTourWithId(TourEntity tourEntity) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("insert into Tour " +
-                    "(name, description, distance, id) " +
-                    "values (?, ?, ?, ?)")) {
+                    "(name, description, id) " +
+                    "values (?, ?, ?)")) {
                 statement.setString(1, tourEntity.getName());
                 statement.setString(2, tourEntity.getDescription());
-                statement.setFloat(3, tourEntity.getDistance());
-                statement.setInt(4, tourEntity.getId());
+                statement.setInt(3, tourEntity.getId());
 
                 statement.execute();
             }

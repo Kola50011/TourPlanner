@@ -9,6 +9,8 @@ import java.io.IOException;
 
 @Slf4j
 public class PropertyReader {
+    private PropertyReader() {
+    }
 
     public static ApplicationProperties getProperties() {
         try {

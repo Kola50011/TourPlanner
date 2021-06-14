@@ -29,6 +29,8 @@ public interface LogMapper {
     @Mapping(source = "rating", target = "rating")
     @Mapping(source = "meansOfTransport", target = "meansOfTransport")
     @Mapping(source = "distance", target = "distance")
+    @Mapping(source = "notes", target = "notes")
+    @Mapping(source = "moneySpent", target = "moneySpent")
     Log logEntityToLog(LogEntity logEntity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
@@ -42,5 +44,7 @@ public interface LogMapper {
     @Mapping(source = "newLog.rating", target = "rating")
     @Mapping(source = "newLog.meansOfTransport", target = "meansOfTransport")
     @Mapping(source = "newLog.distance", target = "distance")
+    @Mapping(source = "newLog.notes", target = "notes")
+    @Mapping(source = "newLog.moneySpent", target = "moneySpent")
     LogEntity combineLogEntityWithLogEntity(@MappingTarget LogEntity oldLog, Log newLog);
 }

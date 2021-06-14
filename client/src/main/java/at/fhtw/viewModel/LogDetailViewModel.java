@@ -44,6 +44,10 @@ public class LogDetailViewModel {
     private final StringProperty meansOfTransportationProperty = new SimpleStringProperty();
     @Getter
     private final StringProperty distanceProperty = new SimpleStringProperty();
+    @Getter
+    private final StringProperty notesProperty = new SimpleStringProperty();
+    @Getter
+    private final StringProperty moneySpentProperty = new SimpleStringProperty();
 
     @Getter
     private Log currentLog;
@@ -59,6 +63,8 @@ public class LogDetailViewModel {
             ratingProperty.setValue(currentLog.getRating());
             meansOfTransportationProperty.setValue(currentLog.getMeansOfTransport());
             distanceProperty.setValue(String.valueOf(currentLog.getDistance()));
+            moneySpentProperty.setValue(String.valueOf(currentLog.getMoneySpent()));
+            notesProperty.setValue(String.valueOf(currentLog.getNotes()));
         }, this::clearFields);
     }
 
@@ -69,6 +75,8 @@ public class LogDetailViewModel {
         currentLog.setEndLocation(endLocationProperty.getValue());
         currentLog.setRating(ratingProperty.getValue().intValue());
         currentLog.setMeansOfTransport(meansOfTransportationProperty.getValue());
+        currentLog.setMoneySpent(moneySpentProperty.getValue());
+        currentLog.setNotes(notesProperty.getValue());
 
         tourPlannerClient.putLog(currentLog);
 
@@ -83,5 +91,7 @@ public class LogDetailViewModel {
         ratingProperty.setValue(0);
         meansOfTransportationProperty.setValue("");
         distanceProperty.setValue("");
+        moneySpentProperty.setValue("");
+        notesProperty.setValue("");
     }
 }

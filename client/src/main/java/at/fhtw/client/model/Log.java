@@ -25,6 +25,8 @@ public class Log {
     private int rating;
     private String meansOfTransport;
     private float distance;
+    private String notes;
+    private String moneySpent;
 
     public static Log defaultLog() {
         return Log.builder()
@@ -34,6 +36,8 @@ public class Log {
                 .endLocation("")
                 .rating(0)
                 .meansOfTransport("")
+                .notes("")
+                .moneySpent("")
                 .build();
     }
 }

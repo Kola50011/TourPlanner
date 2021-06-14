@@ -20,4 +20,6 @@ public class Log {
     private int rating;
     private String meansOfTransport;
     private float distance;
+    private String notes;
+    private String moneySpent;
 }

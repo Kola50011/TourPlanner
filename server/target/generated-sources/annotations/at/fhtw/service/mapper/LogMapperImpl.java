@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-06-10T16:52:30+0200",
+    date = "2021-06-14T15:56:59+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.7 (JetBrains s.r.o.)"
 )
 @Component
@@ -30,6 +30,8 @@ public class LogMapperImpl implements LogMapper {
         logEntity.setRating( log.getRating() );
         logEntity.setMeansOfTransport( log.getMeansOfTransport() );
         logEntity.setDistance( log.getDistance() );
+        logEntity.setNotes( log.getNotes() );
+        logEntity.setMoneySpent( log.getMoneySpent() );
 
         return logEntity;
     }
@@ -51,6 +53,8 @@ public class LogMapperImpl implements LogMapper {
         log.setRating( logEntity.getRating() );
         log.setMeansOfTransport( logEntity.getMeansOfTransport() );
         log.setDistance( logEntity.getDistance() );
+        log.setNotes( logEntity.getNotes() );
+        log.setMoneySpent( logEntity.getMoneySpent() );
 
         return log;
     }
@@ -80,6 +84,12 @@ public class LogMapperImpl implements LogMapper {
             oldLog.setMeansOfTransport( newLog.getMeansOfTransport() );
         }
         oldLog.setDistance( newLog.getDistance() );
+        if ( newLog.getNotes() != null ) {
+            oldLog.setNotes( newLog.getNotes() );
+        }
+        if ( newLog.getMoneySpent() != null ) {
+            oldLog.setMoneySpent( newLog.getMoneySpent() );
+        }
 
         return oldLog;
     }

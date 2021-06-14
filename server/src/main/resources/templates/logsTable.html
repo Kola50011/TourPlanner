@@ -15,24 +15,32 @@
             <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">To</th>
             <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">End-time</th>
             <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Distance</th>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Money Spent</th>
+            <th class="px-6 py-3 text-left text-sm uppercase tracking-widest">Notes</th>
         </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
         <tr th:each="log, iStat: ${logs}">
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.startLocation}"/>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getStartLocation()}"/>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.startTime}"/>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getStartTime()}"/>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.endLocation}"/>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getEndLocation()}"/>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.endTime}"/>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getEndTime()}"/>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span th:text="${log.distance}"/>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getDistance()}"/>
+            </td>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getMoneySpent()}"/>
+            </td>
+            <td class="whitespace-nowrap">
+                <span th:text="${log.getNotes()}"/>
             </td>
         </tr>
         </tbody>

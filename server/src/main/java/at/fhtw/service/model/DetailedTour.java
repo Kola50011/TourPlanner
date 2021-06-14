@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString
+@EqualsAndHashCode
 public class DetailedTour {
     private int id;
     private String name;

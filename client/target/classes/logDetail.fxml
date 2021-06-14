@@ -45,14 +45,25 @@
               GridPane.columnIndex="1" GridPane.rowIndex="3"
               GridPane.columnSpan="2" GridPane.rowSpan="1"/>
 
-    <Label text="Distance"
+    <Label text="Money spent"
            GridPane.columnIndex="0" GridPane.rowIndex="4"
            GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+    <TextField fx:id="moneySpentField"
+               GridPane.columnIndex="1" GridPane.rowIndex="4"
+               GridPane.columnSpan="1" GridPane.rowSpan="1"/>
+
+    <Label text="Distance"
+           GridPane.columnIndex="0" GridPane.rowIndex="5"
+           GridPane.columnSpan="1" GridPane.rowSpan="1"/>
     <Label text="NaN" fx:id="distanceLabel"
-           GridPane.columnIndex="1" GridPane.rowIndex="4"
+           GridPane.columnIndex="1" GridPane.rowIndex="5"
            GridPane.columnSpan="1" GridPane.rowSpan="1"/>
 
-    <Button text="Save" fx:id="saveLogButton" maxWidth="Infinity" onAction="#saveButtonClicked"
-            GridPane.columnIndex="0" GridPane.rowIndex="5"
+    <TextArea fx:id="notesField"
+              GridPane.columnIndex="0" GridPane.rowIndex="6"
+              GridPane.columnSpan="3" GridPane.rowSpan="2"/>
+
+    <Button text="Save" maxWidth="Infinity" onAction="#saveButtonClicked"
+            GridPane.columnIndex="0" GridPane.rowIndex="9"
             GridPane.columnSpan="3" GridPane.rowSpan="1"/>
 </GridPane>

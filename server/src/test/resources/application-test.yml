@@ -1,0 +1,14 @@
+minio:
+  bucket: tourplanner
+  endpoint: http://localhost:9000
+  accesskey: minio
+  secretKey: minioKey123
+
+db:
+  user: postgres
+  pass: postgres
+  url: jdbc:postgresql://localhost/postgres
+
+map-quest:
+  secretKey: MRJrIUJ2BwcAJfaA1BiejGn5fV90wDHL
+  endpoint: www.mapquestapi.com

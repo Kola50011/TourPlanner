@@ -80,7 +80,7 @@ public class LogService {
                 var tourEntity = LogMapper.INSTANCE.logToLogEntity(newLog);
                 tourEntity.setDistance(calculateLogDistance(newLog));
 
-                logRepository.insertTour(tourEntity);
+                logRepository.insertLog(tourEntity);
             }
             asyncUpdateRouteOfTour(newLog.getTourId());
         } catch (SQLException e) {

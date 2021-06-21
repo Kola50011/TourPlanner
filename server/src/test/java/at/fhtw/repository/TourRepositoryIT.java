@@ -101,9 +101,6 @@ class TourRepositoryIT {
     @SneakyThrows
     @AfterEach
     private void tearDown() {
-        var tours = tourRepository.getAllTours();
-        for (var tour : tours) {
-            tourRepository.deleteTour(tour.getId());
-        }
+        tourRepository.deleteAll();
     }
 }

@@ -1,6 +1,7 @@
 package at.fhtw.repository;
 
 import at.fhtw.repository.model.LogEntity;
+import com.google.common.annotations.VisibleForTesting;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -105,7 +106,7 @@ public class LogRepository {
         }
     }
 
-    public void insertTour(LogEntity logEntity) throws SQLException {
+    public void insertLog(LogEntity logEntity) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("insert into Log " +
                     "(tourid, startTime, startLocation, endTime, endLocation, " +
@@ -117,10 +118,32 @@ public class LogRepository {
         }
     }
 
+    public void insertLogWithId(LogEntity logEntity) throws SQLException {
+        try (var connection = connectionFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("insert into Log " +
+                    "(tourid, startTime, startLocation, endTime, endLocation, " +
+                    "rating, meansoftransport, distance, notes, moneySpent, id) " +
+                    "values (?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)")) {
+                fillPreparedStatementWithLogEntity(statement, logEntity);
+                statement.setInt(11, logEntity.getId());
+                statement.execute();
+            }
+        }
+    }
+
     public void deleteLog(int id) throws SQLException {
         try (var connection = connectionFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("delete from Log where id = ?")) {
                 statement.setInt(1, id);
+                statement.execute();
+            }
+        }
+    }
+
+    @VisibleForTesting
+    void deleteAll() throws SQLException {
+        try (var connection = connectionFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("delete from Log")) {
                 statement.execute();
             }
         }

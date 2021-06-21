@@ -1,6 +1,7 @@
 package at.fhtw.repository;
 
 import at.fhtw.repository.model.TourEntity;
+import com.google.common.annotations.VisibleForTesting;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -108,6 +109,15 @@ public class TourRepository {
                 statement.setString(2, tourEntity.getDescription());
                 statement.setInt(3, tourEntity.getId());
 
+                statement.execute();
+            }
+        }
+    }
+
+    @VisibleForTesting
+    void deleteAll() throws SQLException {
+        try (var connection = connectionFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("delete from Tour")) {
                 statement.execute();
             }
         }

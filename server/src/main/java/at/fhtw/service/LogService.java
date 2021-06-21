@@ -103,8 +103,8 @@ public class LogService {
             return true;
         } catch (SQLException e) {
             log.error("Could not delete log!", e);
+            return false;
         }
-        return false;
     }
 
     @SneakyThrows

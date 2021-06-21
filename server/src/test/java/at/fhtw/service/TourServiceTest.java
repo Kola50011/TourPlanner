@@ -70,6 +70,7 @@ class TourServiceTest {
 
     @Test
     void deleteTour() throws SQLException {
+        when(tourRepository.getTour(1)).thenReturn(Optional.of(TourFixtures.carTourEntity()));
         doNothing().when(tourRepository).deleteTour(1);
         doThrow(new SQLException("lol")).when(tourRepository).deleteTour(3);
 

@@ -1,9 +1,10 @@
-package at.fhtw.service;
+package at.fhtw.service.impl;
 
 import at.fhtw.repository.LogRepository;
 import at.fhtw.repository.TourRepository;
 import at.fhtw.repository.model.LogEntity;
 import at.fhtw.repository.model.TourEntity;
+import at.fhtw.service.interfaces.SearchService;
 import at.fhtw.service.model.SearchRequest;
 import at.fhtw.service.model.SearchResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,11 +15,14 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.FloatPoint;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.queryparser.simple.SimpleQueryParser;
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -34,7 +38,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SearchService {
+public class SearchServiceImpl implements SearchService {
     private static final String ID_FIELD = "id";
     private static final String SEARCH_FIELD = "searchField";
     private static final int SEARCH_LIMIT = 10;
@@ -43,6 +47,7 @@ public class SearchService {
     private final TourRepository tourRepository;
     private final ObjectMapper objectMapper;
 
+    @Override
     public SearchResult search(SearchRequest searchRequest) {
         var resultTours = searchDocuments(searchRequest, getTourDocuments());
         var resultLogs = searchDocuments(searchRequest, getLogDocuments());
@@ -81,9 +86,17 @@ public class SearchService {
                 indexWriter.addDocuments(documents);
                 indexWriter.close();
 
+                Set<String> fields = new HashSet<>();
                 var indexReader = DirectoryReader.open(directory);
                 var indexSearcher = new IndexSearcher(indexReader);
-                var queryParser = new SimpleQueryParser(analyzer, SEARCH_FIELD);
+                for (var document : documents) {
+                    fields.addAll(
+                            document.getFields().stream()
+                                    .map(IndexableField::name)
+                                    .collect(Collectors.toList()));
+                }
+
+                var queryParser = new MultiFieldQueryParser(fields.toArray(String[]::new), analyzer);
                 var query = queryParser.parse(searchRequest.getSearchString());
 
                 var topDocs = indexSearcher.search(query, SEARCH_LIMIT);
@@ -93,6 +106,8 @@ public class SearchService {
                     ret.add(doc.getField(ID_FIELD).stringValue());
                 }
                 IOUtils.rm(indexPath);
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,6 +124,8 @@ public class SearchService {
         var document = new Document();
         document.add(new Field(ID_FIELD, Integer.toString(tourEntity.getId()), TextField.TYPE_STORED));
         document.add(new Field(SEARCH_FIELD, objectToString(tourEntity), TextField.TYPE_STORED));
+        document.add(new TextField("name", tourEntity.getName(), Field.Store.YES));
+        document.add(new TextField("description", tourEntity.getDescription(), Field.Store.YES));
         return document;
     }
 
@@ -116,6 +133,16 @@ public class SearchService {
         var document = new Document();
         document.add(new Field(ID_FIELD, Integer.toString(logEntity.getId()), TextField.TYPE_STORED));
         document.add(new Field(SEARCH_FIELD, objectToString(logEntity), TextField.TYPE_STORED));
+        document.add(new TextField("startLocation", logEntity.getStartLocation(), Field.Store.YES));
+        document.add(new TextField("endLocation", logEntity.getEndLocation(), Field.Store.YES));
+        document.add(new TextField("notes", logEntity.getNotes(), Field.Store.YES));
+        document.add(new TextField("meansOfTransport", logEntity.getMeansOfTransport(), Field.Store.YES));
+        document.add(new TextField("moneySpent", logEntity.getMoneySpent(), Field.Store.YES));
+        document.add(new FloatPoint("distance", logEntity.getDistance()));
+        document.add(new FloatPoint("rating", logEntity.getRating()));
+        document.add(new TextField("distance", Float.toString(logEntity.getDistance()), Field.Store.YES));
+        document.add(new TextField("rating", Integer.toString(logEntity.getRating()), Field.Store.YES));
+
         return document;
     }
 

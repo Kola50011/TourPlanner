@@ -1,6 +1,6 @@
 package at.fhtw.controller;
 
-import at.fhtw.service.SearchService;
+import at.fhtw.service.interfaces.SearchService;
 import at.fhtw.service.model.SearchRequest;
 import at.fhtw.service.model.SearchResult;
 import lombok.RequiredArgsConstructor;

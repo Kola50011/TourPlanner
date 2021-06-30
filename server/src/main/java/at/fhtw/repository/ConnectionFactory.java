@@ -16,7 +16,7 @@ public class ConnectionFactory {
     public ConnectionFactory(DBProperties dbProperties) {
         this.dbProperties = dbProperties;
 
-        Flyway flyway = Flyway.configure().dataSource(dbProperties.getUrl(), dbProperties.getUser(), dbProperties.getPass()).load();
+        var flyway = Flyway.configure().dataSource(dbProperties.getUrl(), dbProperties.getUser(), dbProperties.getPass()).load();
         flyway.migrate();
     }
 

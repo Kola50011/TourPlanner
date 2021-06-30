@@ -10,7 +10,7 @@ The software is split into a __server-client architecture__, where the backend i
 The fronted is implemented in Java using JavaFX and FXML. Furthermore, the MVVM pattern is used to follow best-practices in building a JavaFX application. No data is stored on the frontend.
 
 ## Backend
-The backend is responsible for all business logic and data storage. Furthermore, it connects to __min.io__ to store the images. __PostgreSQL__ is used as the database to store all logs and tours.
+The backend is responsible for all business logic and data storage. Furthermore, it connects to __min.io__ to store the images. __PostgreSQL__ is used as the database to store all logs and tours. The **Spring Framework** is used in the backend allowing Inversion of Control and Dependency Injection.
 
 
 # Failures / Lessons learned
@@ -26,6 +26,30 @@ As this service has a large amount of logic behind it, it's critical to make sur
 
 ## tour / log-service
 These two services handle all logic of inserting, updating and deleting tours and logs. Therefore, testing is a requirement.
+
+# Unique Feature
+The TourPlanner support Lucene query syntax for searching. This syntax is described in detail at https://www.elastic.co/guide/en/kibana/current/lucene-query.html
+# Data Model
+
+## Tour
+* id
+* name
+* description
+* distance
+* image
+
+## Log
+* id
+* tourId
+* startTime
+* endTime
+* startLocation
+* endLocation
+* rating
+* meansOfTransport
+* distance
+* notes
+* moneySpent
 
 # Time spent
 

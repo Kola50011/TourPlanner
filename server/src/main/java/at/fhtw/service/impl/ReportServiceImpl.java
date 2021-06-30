@@ -1,5 +1,8 @@
-package at.fhtw.service;
+package at.fhtw.service.impl;
 
+import at.fhtw.service.interfaces.LogService;
+import at.fhtw.service.interfaces.ReportService;
+import at.fhtw.service.interfaces.TourService;
 import com.lowagie.text.DocumentException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,22 +22,12 @@ import java.time.Duration;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class ReportService {
+public class ReportServiceImpl implements ReportService {
     private final TourService tourService;
     private final LogService logService;
     private final TemplateEngine templateEngine;
 
-    public static String formatDuration(Duration duration) {
-        long seconds = duration.getSeconds();
-        long absSeconds = Math.abs(seconds);
-        var positive = String.format(
-                "%d:%02d:%02d",
-                absSeconds / 3600,
-                (absSeconds % 3600) / 60,
-                absSeconds % 60);
-        return seconds < 0 ? "-" + positive : positive;
-    }
-
+    @Override
     public byte[] generateReportForTour(int tourId) {
         var optionalTour = tourService.getTour(tourId);
         if (optionalTour.isEmpty()) {
@@ -56,6 +49,7 @@ public class ReportService {
         return htmlToPdf(html);
     }
 
+    @Override
     public byte[] generateLogsReport() {
         var logs = logService.getLogs();
 
@@ -69,7 +63,7 @@ public class ReportService {
         }
 
         var context = new Context();
-        context.setVariable("totalTime", formatDuration(Duration.ofSeconds(totalTime)));
+        context.setVariable("totalTime", ReportService.formatDuration(Duration.ofSeconds(totalTime)));
         context.setVariable("totalDistance", totalDistance);
         context.setVariable("logs", logs);
 
@@ -78,6 +72,7 @@ public class ReportService {
         return htmlToPdf(html);
     }
 
+    @Override
     public String generateLogsReportHtml() {
         var logs = logService.getLogs();
 
@@ -91,20 +86,18 @@ public class ReportService {
         }
 
         var context = new Context();
-        context.setVariable("totalTime", formatDuration(Duration.ofSeconds(totalTime)));
+        context.setVariable("totalTime", ReportService.formatDuration(Duration.ofSeconds(totalTime)));
         context.setVariable("totalDistance", totalDistance);
         context.setVariable("logs", logs);
 
-        String html = templateEngine.process("summarizeReportTemplate", context);
-
-        return html;
+        return templateEngine.process("summarizeReportTemplate", context);
     }
 
     private byte[] htmlToPdf(String html) {
         try {
             var file = File.createTempFile("output", ".pdf");
             OutputStream outputStream = new FileOutputStream(file);
-            ITextRenderer renderer = new ITextRenderer(20f * 4f / 3f, 20);
+            var renderer = new ITextRenderer(20f * 4f / 3f, 20);
             var path = new ClassPathResource("/static/").getURL().toExternalForm();
             renderer.setDocumentFromString(html, path);
             renderer.layout();

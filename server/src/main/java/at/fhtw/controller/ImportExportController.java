@@ -1,6 +1,6 @@
 package at.fhtw.controller;
 
-import at.fhtw.service.ImportExportService;
+import at.fhtw.service.interfaces.ImportExportService;
 import at.fhtw.service.model.ImportExport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

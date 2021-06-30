@@ -4,6 +4,8 @@ import at.fhtw.fixtures.LogFixtures;
 import at.fhtw.fixtures.TourFixtures;
 import at.fhtw.repository.LogRepository;
 import at.fhtw.repository.TourRepository;
+import at.fhtw.service.impl.SearchServiceImpl;
+import at.fhtw.service.interfaces.SearchService;
 import at.fhtw.service.model.SearchRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -30,7 +32,7 @@ class SearchServiceTest {
         tourRepository = Mockito.mock(TourRepository.class);
         objectMapper = new ObjectMapper();
 
-        searchService = new SearchService(logRepository, tourRepository, objectMapper);
+        searchService = new SearchServiceImpl(logRepository, tourRepository, objectMapper);
     }
 
     @SneakyThrows
@@ -57,6 +59,14 @@ class SearchServiceTest {
         assertThat(searchService
                 .search(SearchRequest.builder().searchString(carLog.getMeansOfTransport()).build())
                 .getLogIDs()
+        )
+                .contains(Integer.toString(carLog.getId()))
+                .hasSize(1);
+
+        assertThat(searchService
+                .search(SearchRequest.builder().searchString("name:\"Car Tour\"").build())
+
+                .getTourIDs()
         )
                 .contains(Integer.toString(carLog.getId()))
                 .hasSize(1);

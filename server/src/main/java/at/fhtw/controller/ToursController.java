@@ -1,7 +1,7 @@
 package at.fhtw.controller;
 
-import at.fhtw.service.ReportService;
-import at.fhtw.service.TourService;
+import at.fhtw.service.interfaces.ReportService;
+import at.fhtw.service.interfaces.TourService;
 import at.fhtw.service.model.DetailedTour;
 import at.fhtw.service.model.Tour;
 import lombok.RequiredArgsConstructor;

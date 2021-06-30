@@ -1,14 +1,16 @@
-package at.fhtw.service;
+package at.fhtw.service.impl;
 
 import at.fhtw.client.MapQuestClient;
 import at.fhtw.repository.ImageRepository;
 import at.fhtw.repository.LogRepository;
+import at.fhtw.service.interfaces.LogService;
 import at.fhtw.service.mapper.LogMapper;
 import at.fhtw.service.model.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,12 +22,13 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class LogService {
+public class LogServiceImpl implements LogService {
 
     private final LogRepository logRepository;
     private final MapQuestClient mapQuestClient;
     private final ImageRepository imageRepository;
 
+    @Override
     public List<Log> getLogs() {
         List<Log> ret = new ArrayList<>();
         for (var logEntity : (logRepository.getAllLogs())) {
@@ -35,6 +38,7 @@ public class LogService {
         return ret;
     }
 
+    @Override
     public List<Log> getLogsOfTour(int tourId) {
         List<Log> ret = new ArrayList<>();
         for (var logEntity : (logRepository.getLogsOfTour(tourId))) {
@@ -44,15 +48,18 @@ public class LogService {
         return ret;
     }
 
+    @Override
     public float getDistanceOfTour(int tourId) {
         return logRepository.getDistanceOfTour(tourId);
     }
 
+    @Override
     public Optional<Log> getLog(int id) {
         var logEntity = logRepository.getLog(id);
         return logEntity.map(LogMapper.INSTANCE::logEntityToLog);
     }
 
+    @Override
     public boolean insertOrUpdateLog(Log newLog) {
         try {
             if (logRepository.logExists(newLog.getId())) {
@@ -78,7 +85,9 @@ public class LogService {
             } else {
                 // Insert
                 var tourEntity = LogMapper.INSTANCE.logToLogEntity(newLog);
-                tourEntity.setDistance(calculateLogDistance(newLog));
+                if (!StringUtils.isEmpty(tourEntity.getStartLocation()) && !StringUtils.isEmpty(tourEntity.getEndLocation())) {
+                    tourEntity.setDistance(calculateLogDistance(newLog));
+                }
 
                 logRepository.insertLog(tourEntity);
             }
@@ -93,6 +102,7 @@ public class LogService {
         return true;
     }
 
+    @Override
     public boolean deleteLog(int id) {
         try {
             var log = getLog(id);
@@ -107,6 +117,7 @@ public class LogService {
         }
     }
 
+    @Override
     @SneakyThrows
     public void asyncUpdateRouteOfTour(int tourId) {
         new Thread(() -> updateRouteOfTour(tourId)).start();

@@ -7,6 +7,8 @@ import at.fhtw.client.model.RouteResponse;
 import at.fhtw.fixtures.LogFixtures;
 import at.fhtw.repository.ImageRepository;
 import at.fhtw.repository.LogRepository;
+import at.fhtw.service.impl.LogServiceImpl;
+import at.fhtw.service.interfaces.LogService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +34,7 @@ class LogServiceTest {
         logRepository = Mockito.mock(LogRepository.class);
         mapQuestClient = Mockito.mock(MapQuestClient.class);
 
-        logService = new LogService(logRepository, mapQuestClient, imageRepository);
+        logService = new LogServiceImpl(logRepository, mapQuestClient, imageRepository);
     }
 
     @Test

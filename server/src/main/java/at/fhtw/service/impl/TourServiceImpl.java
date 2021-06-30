@@ -1,7 +1,9 @@
-package at.fhtw.service;
+package at.fhtw.service.impl;
 
 import at.fhtw.repository.ImageRepository;
 import at.fhtw.repository.TourRepository;
+import at.fhtw.service.interfaces.LogService;
+import at.fhtw.service.interfaces.TourService;
 import at.fhtw.service.mapper.TourMapper;
 import at.fhtw.service.model.DetailedTour;
 import at.fhtw.service.model.Tour;
@@ -18,12 +20,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 @Service
-public class TourService {
+public class TourServiceImpl implements TourService {
 
     private final TourRepository tourRepository;
     private final ImageRepository imageRepository;
     private final LogService logService;
 
+    @Override
     public List<Tour> getAllTours() {
         List<Tour> ret = new ArrayList<>();
         try {
@@ -37,6 +40,7 @@ public class TourService {
         return ret;
     }
 
+    @Override
     public List<DetailedTour> getAllDetailedTours() {
         List<DetailedTour> ret = new ArrayList<>();
         try {
@@ -50,6 +54,7 @@ public class TourService {
         return ret;
     }
 
+    @Override
     public Optional<DetailedTour> getTour(int id) {
         try {
             var tourEntity = tourRepository.getTour(id);
@@ -66,6 +71,7 @@ public class TourService {
         return Optional.empty();
     }
 
+    @Override
     public boolean insertOrUpdateTour(DetailedTour detailedTour) {
         try {
             if (tourRepository.tourExists(detailedTour.getId())) {
@@ -95,6 +101,7 @@ public class TourService {
         return true;
     }
 
+    @Override
     public boolean deleteTour(int id) {
         try {
             tourRepository.deleteTour(id);

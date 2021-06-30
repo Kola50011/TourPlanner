@@ -1,7 +1,7 @@
 package at.fhtw.controller;
 
-import at.fhtw.service.LogService;
-import at.fhtw.service.ReportService;
+import at.fhtw.service.interfaces.LogService;
+import at.fhtw.service.interfaces.ReportService;
 import at.fhtw.service.model.Log;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

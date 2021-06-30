@@ -3,6 +3,9 @@ package at.fhtw.service;
 import at.fhtw.fixtures.TourFixtures;
 import at.fhtw.repository.ImageRepository;
 import at.fhtw.repository.TourRepository;
+import at.fhtw.service.impl.LogServiceImpl;
+import at.fhtw.service.impl.TourServiceImpl;
+import at.fhtw.service.interfaces.TourService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -82,8 +85,8 @@ class TourServiceTest {
     private void setUp() {
         tourRepository = Mockito.mock(TourRepository.class);
         ImageRepository imageRepository = Mockito.mock(ImageRepository.class);
-        LogService logService = Mockito.mock(LogService.class);
+        LogServiceImpl logService = Mockito.mock(LogServiceImpl.class);
 
-        tourService = new TourService(tourRepository, imageRepository, logService);
+        tourService = new TourServiceImpl(tourRepository, imageRepository, logService);
     }
 }

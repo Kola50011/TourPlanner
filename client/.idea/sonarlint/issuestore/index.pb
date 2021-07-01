@@ -5,8 +5,6 @@ a
 1src/main/java/at/fhtw/events/TourChangeEvent.java,1/e/1e64382c317aca1cff24bd7ad46d9e22c003f537
 d
 4src/main/java/at/fhtw/client/model/DetailedTour.java,5/a/5a1bd16360dbb50f8790af1e9a34c41bc969a1e5
-N
-src/main/java/at/fhtw/App.java,f/4/f4a74842c701f564686b046959b1891298cd78d5
 d
 4src/main/java/at/fhtw/client/model/ImportExport.java,3/1/317b0bc8f066b81259ed86200cd59f1a03b410d1
 b
@@ -31,8 +29,6 @@ b
 .src/main/java/at/fhtw/view/LogsController.java,2/a/2accc2012f9ce0ecd43a5d60fcda5cfba1550a1a
 ^
 .src/main/java/at/fhtw/client/model/Filter.java,3/d/3d13543d1537452a1a085e25a161fa5246243648
-7
-pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 c
 3src/main/java/at/fhtw/client/TourPlannerClient.java,b/7/b735cdf4a05579aece51cbe03c35a696c8f3e79c
 j
@@ -61,3 +57,7 @@ b
 2src/main/java/at/fhtw/view/TourListController.java,8/e/8ea98a532fa661d911d558cd89d147d0b9a66f59
 f
 6src/main/java/at/fhtw/viewModel/TourListViewModel.java,9/9/990cac62a9b0eec84ff1d7db1fe38bc1d9d83bb4
+N
+src/main/java/at/fhtw/App.java,f/4/f4a74842c701f564686b046959b1891298cd78d5
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec

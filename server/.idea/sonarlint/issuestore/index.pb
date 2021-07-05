@@ -35,8 +35,6 @@ e
 5src/test/java/at/fhtw/repository/LogRepositoryIT.java,9/1/91dc1613ca2fc5e13e12a0f1552bed126882e42c
 d
 4src/main/java/at/fhtw/repository/TourRepository.java,7/f/7f43f7764d40921b9e3b11004da48c2260f6a540
-b
-2src/test/java/at/fhtw/service/TourServiceTest.java,b/b/bb757c419cdcdc5b0e690bb14ca73e78ff2d0218
 c
 3src/main/java/at/fhtw/repository/LogRepository.java,c/2/c22c34c5e84aba58d38e5e38e020faec83af3d8d
 a
@@ -105,3 +103,5 @@ N
 src/main/java/at/fhtw/App.java,f/4/f4a74842c701f564686b046959b1891298cd78d5
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+b
+2src/test/java/at/fhtw/service/TourServiceTest.java,b/b/bb757c419cdcdc5b0e690bb14ca73e78ff2d0218

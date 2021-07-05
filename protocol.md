@@ -29,6 +29,7 @@ These two services handle all logic of inserting, updating and deleting tours an
 
 # Unique Feature
 The TourPlanner support Lucene query syntax for searching. This syntax is described in detail at https://www.elastic.co/guide/en/kibana/current/lucene-query.html
+
 # Data Model
 
 ## Tour

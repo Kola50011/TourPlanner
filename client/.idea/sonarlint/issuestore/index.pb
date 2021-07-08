@@ -49,3 +49,13 @@ b
 2src/main/java/at/fhtw/view/TourListController.java,8/e/8ea98a532fa661d911d558cd89d147d0b9a66f59
 f
 6src/main/java/at/fhtw/viewModel/TourListViewModel.java,9/9/990cac62a9b0eec84ff1d7db1fe38bc1d9d83bb4
+[
++src/main/java/at/fhtw/client/model/Log.java,a/d/ad4712a3a4067aaa787d72a29092d242497442cc
+c
+3src/main/java/at/fhtw/view/LogDetailController.java,2/d/2d76b403a5b922ba804fb543876a424635e25089
+_
+/src/main/java/at/fhtw/view/IndexController.java,9/4/947ef4c37c486744d45a5bb007c3bc96bad20608
+g
+7src/main/java/at/fhtw/viewModel/LogDetailViewModel.java,e/4/e411e3e3ab3cc1a66f4076daeec0c207872257e7
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec

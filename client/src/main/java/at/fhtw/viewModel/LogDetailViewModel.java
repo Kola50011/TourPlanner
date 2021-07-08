@@ -13,11 +13,13 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
+@Slf4j
 public class LogDetailViewModel {
     @Getter
     private final ListProperty<String> transportationOptions =
@@ -78,6 +80,7 @@ public class LogDetailViewModel {
         currentLog.setMoneySpent(moneySpentProperty.getValue());
         currentLog.setNotes(notesProperty.getValue());
 
+        log.info(currentLog.toString());
         tourPlannerClient.putLog(currentLog);
 
         setLog(currentLog.getId());

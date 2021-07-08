@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 @Setter
 @Builder
 @EqualsAndHashCode
+@ToString
 public class Log {
 
     private int id;

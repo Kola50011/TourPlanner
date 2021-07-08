@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -14,6 +15,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Log {
 
     private int id;

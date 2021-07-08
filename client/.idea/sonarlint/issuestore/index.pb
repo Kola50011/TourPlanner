@@ -41,14 +41,6 @@ k
 ;src/main/java/at/fhtw/properties/ApplicationProperties.java,7/4/744144a966a871406f131b95def756946ee09180
 d
 4src/main/java/at/fhtw/properties/PropertyReader.java,4/8/4863cc59568c62df4db556cf67583e66f1b82b5b
-c
-3src/main/java/at/fhtw/view/LogDetailController.java,2/d/2d76b403a5b922ba804fb543876a424635e25089
-[
-+src/main/java/at/fhtw/client/model/Log.java,a/d/ad4712a3a4067aaa787d72a29092d242497442cc
-g
-7src/main/java/at/fhtw/viewModel/LogDetailViewModel.java,e/4/e411e3e3ab3cc1a66f4076daeec0c207872257e7
-_
-/src/main/java/at/fhtw/view/IndexController.java,9/4/947ef4c37c486744d45a5bb007c3bc96bad20608
 `
 0src/main/java/at/fhtw/events/LogChangeEvent.java,c/f/cf43cccf26e2f87bd129679363b7824d7972a3f9
 d
@@ -57,7 +49,3 @@ b
 2src/main/java/at/fhtw/view/TourListController.java,8/e/8ea98a532fa661d911d558cd89d147d0b9a66f59
 f
 6src/main/java/at/fhtw/viewModel/TourListViewModel.java,9/9/990cac62a9b0eec84ff1d7db1fe38bc1d9d83bb4
-N
-src/main/java/at/fhtw/App.java,f/4/f4a74842c701f564686b046959b1891298cd78d5
-7
-pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec

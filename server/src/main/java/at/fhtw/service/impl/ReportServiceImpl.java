@@ -56,9 +56,9 @@ public class ReportServiceImpl implements ReportService {
         var totalTime = 0;
         var totalDistance = 0.0;
 
-        for (var log : logs) {
-            totalDistance += log.getDistance();
-            var duration = Duration.between(log.getStartTime().toInstant(), log.getEndTime().toInstant());
+        for (var tourLog : logs) {
+            totalDistance += tourLog.getDistance();
+            var duration = Duration.between(tourLog.getStartTime().toInstant(), tourLog.getEndTime().toInstant());
             totalTime += duration.getSeconds();
         }
 

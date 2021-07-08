@@ -95,7 +95,7 @@ class TourRepositoryIT {
 
     @BeforeEach
     private void setUp() {
-        tourRepository = new TourRepository(new ConnectionFactory(dbProperties));
+        tourRepository = new TourRepositoryImpl(new ConnectionFactory(dbProperties));
     }
 
     @SneakyThrows

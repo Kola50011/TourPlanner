@@ -1,8 +1,8 @@
 package at.fhtw.service;
 
 import at.fhtw.fixtures.TourFixtures;
-import at.fhtw.repository.ImageRepository;
-import at.fhtw.repository.TourRepository;
+import at.fhtw.repository.ImageRepositoryImpl;
+import at.fhtw.repository.TourRepositoryImpl;
 import at.fhtw.service.impl.LogServiceImpl;
 import at.fhtw.service.impl.TourServiceImpl;
 import at.fhtw.service.interfaces.TourService;
@@ -22,7 +22,7 @@ class TourServiceTest {
 
     private TourService tourService;
 
-    private TourRepository tourRepository;
+    private TourRepositoryImpl tourRepository;
 
     @Test
     void getAllTours() throws SQLException {
@@ -83,8 +83,8 @@ class TourServiceTest {
 
     @BeforeEach
     private void setUp() {
-        tourRepository = Mockito.mock(TourRepository.class);
-        ImageRepository imageRepository = Mockito.mock(ImageRepository.class);
+        tourRepository = Mockito.mock(TourRepositoryImpl.class);
+        ImageRepositoryImpl imageRepository = Mockito.mock(ImageRepositoryImpl.class);
         LogServiceImpl logService = Mockito.mock(LogServiceImpl.class);
 
         tourService = new TourServiceImpl(tourRepository, imageRepository, logService);

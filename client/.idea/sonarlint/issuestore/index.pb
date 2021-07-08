@@ -29,10 +29,6 @@ b
 .src/main/java/at/fhtw/view/LogsController.java,2/a/2accc2012f9ce0ecd43a5d60fcda5cfba1550a1a
 ^
 .src/main/java/at/fhtw/client/model/Filter.java,3/d/3d13543d1537452a1a085e25a161fa5246243648
-c
-3src/main/java/at/fhtw/client/TourPlannerClient.java,b/7/b735cdf4a05579aece51cbe03c35a696c8f3e79c
-j
-:src/main/java/at/fhtw/client/TourPlannerClientFactory.java,5/0/50d0d4d4e238a140d042560259d680776e3587f8
 e
 5src/main/java/at/fhtw/viewModel/LogListViewModel.java,8/c/8ce965ca39e477c6444ba2caa9c61ce25b2e966b
 a
@@ -51,11 +47,5 @@ f
 6src/main/java/at/fhtw/viewModel/TourListViewModel.java,9/9/990cac62a9b0eec84ff1d7db1fe38bc1d9d83bb4
 [
 +src/main/java/at/fhtw/client/model/Log.java,a/d/ad4712a3a4067aaa787d72a29092d242497442cc
-c
-3src/main/java/at/fhtw/view/LogDetailController.java,2/d/2d76b403a5b922ba804fb543876a424635e25089
-_
-/src/main/java/at/fhtw/view/IndexController.java,9/4/947ef4c37c486744d45a5bb007c3bc96bad20608
-g
-7src/main/java/at/fhtw/viewModel/LogDetailViewModel.java,e/4/e411e3e3ab3cc1a66f4076daeec0c207872257e7
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec

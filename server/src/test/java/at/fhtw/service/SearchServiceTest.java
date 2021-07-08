@@ -2,8 +2,8 @@ package at.fhtw.service;
 
 import at.fhtw.fixtures.LogFixtures;
 import at.fhtw.fixtures.TourFixtures;
-import at.fhtw.repository.LogRepository;
-import at.fhtw.repository.TourRepository;
+import at.fhtw.repository.LogRepositoryImpl;
+import at.fhtw.repository.TourRepositoryImpl;
 import at.fhtw.service.impl.SearchServiceImpl;
 import at.fhtw.service.interfaces.SearchService;
 import at.fhtw.service.model.SearchRequest;
@@ -21,15 +21,15 @@ import static org.mockito.Mockito.when;
 
 class SearchServiceTest {
 
-    private LogRepository logRepository;
-    private TourRepository tourRepository;
+    private LogRepositoryImpl logRepository;
+    private TourRepositoryImpl tourRepository;
     private ObjectMapper objectMapper;
     private SearchService searchService;
 
     @BeforeEach
     void setUp() {
-        logRepository = Mockito.mock(LogRepository.class);
-        tourRepository = Mockito.mock(TourRepository.class);
+        logRepository = Mockito.mock(LogRepositoryImpl.class);
+        tourRepository = Mockito.mock(TourRepositoryImpl.class);
         objectMapper = new ObjectMapper();
 
         searchService = new SearchServiceImpl(logRepository, tourRepository, objectMapper);

@@ -31,12 +31,8 @@ e
 5src/test/java/at/fhtw/config/EmbeddedDbExtension.java,7/3/73f054a4df3fe3f55158360bcc5963754113ea40
 f
 6src/test/java/at/fhtw/repository/TourRepositoryIT.java,8/2/82ec5459c7b81457c389457f6971bbac68445571
-e
-5src/test/java/at/fhtw/repository/LogRepositoryIT.java,9/1/91dc1613ca2fc5e13e12a0f1552bed126882e42c
 c
 3src/main/java/at/fhtw/repository/LogRepository.java,c/2/c22c34c5e84aba58d38e5e38e020faec83af3d8d
-a
-1src/test/java/at/fhtw/service/LogServiceTest.java,1/0/10c53e4aa5f7b6cdca738386d2c4401bffa20a7b
 e
 5src/main/java/at/fhtw/controller/ToursController.java,b/f/bfa3536a94e0cb75bf7b3b92d1fb89e56883c713
 q
@@ -49,12 +45,8 @@ i
 9src/main/java/at/fhtw/service/interfaces/TourService.java,b/5/b5150fe00c40622492a91e72a81ed3137e9f261e
 o
 ?src/main/java/at/fhtw/service/impl/ImportExportServiceImpl.java,f/7/f720206020be6a4ddec43c7bc2e08dfb773c5a7f
-g
-7src/main/java/at/fhtw/service/impl/TourServiceImpl.java,c/a/ca886bc4f4e4c4f346d0d15f11683dc08209c140
 l
 <src/main/java/at/fhtw/controller/ImportExportController.java,f/e/fee1f8af940ba371771361a3166b7bb1cfbceca7
-e
-5src/main/java/at/fhtw/repository/ImageRepository.java,3/2/320963d470c96003e4e2cf10600673637daea934
 e
 5src/main/java/at/fhtw/service/model/DetailedTour.java,a/4/a4779c552dd47d4d8a976a5e46ca794f5e2d27f1
 f
@@ -85,8 +77,6 @@ _
 0src/test/java/at/fhtw/fixtures/TourFixtures.java,4/9/4980ed2e95b89ddf8bf86016f77eee71aeb479ec
 d
 4src/test/java/at/fhtw/service/SearchServiceTest.java,7/0/7049e46a3e36be894a7c4dba07fb3241dc25824d
-i
-9src/main/java/at/fhtw/service/impl/SearchServiceImpl.java,9/c/9c8d0a3c99add40a5443ac68f3b648b2d2740dd8
 b
 2src/test/java/at/fhtw/service/TourServiceTest.java,b/b/bb757c419cdcdc5b0e690bb14ca73e78ff2d0218
 7
@@ -97,8 +87,6 @@ f
 6src/main/java/at/fhtw/repository/model/TourEntity.java,f/0/f04a38b490e47af0c16104e7a9ff85223f17b26e
 g
 7src/main/java/at/fhtw/repository/ConnectionFactory.java,2/f/2f07953052c0280c5bae03a3cb8c4eff31665ed9
-d
-4src/main/java/at/fhtw/repository/TourRepository.java,7/f/7f43f7764d40921b9e3b11004da48c2260f6a540
 \
 ,src/main/java/at/fhtw/service/model/Log.java,8/8/886458c08c750aaedf0d45fb7b702da9d75309c3
 h

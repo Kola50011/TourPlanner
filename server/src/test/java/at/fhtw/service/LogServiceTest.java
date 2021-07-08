@@ -5,8 +5,8 @@ import at.fhtw.client.model.Info;
 import at.fhtw.client.model.Route;
 import at.fhtw.client.model.RouteResponse;
 import at.fhtw.fixtures.LogFixtures;
-import at.fhtw.repository.ImageRepository;
-import at.fhtw.repository.LogRepository;
+import at.fhtw.repository.ImageRepositoryImpl;
+import at.fhtw.repository.LogRepositoryImpl;
 import at.fhtw.service.impl.LogServiceImpl;
 import at.fhtw.service.interfaces.LogService;
 import lombok.SneakyThrows;
@@ -25,13 +25,13 @@ import static org.mockito.Mockito.*;
 class LogServiceTest {
 
     private LogService logService;
-    private LogRepository logRepository;
+    private LogRepositoryImpl logRepository;
     private MapQuestClient mapQuestClient;
 
     @BeforeEach
     void setUp() {
-        ImageRepository imageRepository = Mockito.mock(ImageRepository.class);
-        logRepository = Mockito.mock(LogRepository.class);
+        ImageRepositoryImpl imageRepository = Mockito.mock(ImageRepositoryImpl.class);
+        logRepository = Mockito.mock(LogRepositoryImpl.class);
         mapQuestClient = Mockito.mock(MapQuestClient.class);
 
         logService = new LogServiceImpl(logRepository, mapQuestClient, imageRepository);

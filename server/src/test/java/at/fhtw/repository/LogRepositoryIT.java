@@ -104,8 +104,8 @@ class LogRepositoryIT {
     @SneakyThrows
     private void setUp() {
         log.info("BeforeEach");
-        logRepository = new LogRepository(new ConnectionFactory(dbProperties));
-        tourRepository = new TourRepository(new ConnectionFactory(dbProperties));
+        logRepository = new LogRepositoryImpl(new ConnectionFactory(dbProperties));
+        tourRepository = new TourRepositoryImpl(new ConnectionFactory(dbProperties));
 
         var carTour = TourFixtures.carTourEntity();
         var bikeTour = TourFixtures.bikeTourEntity();
